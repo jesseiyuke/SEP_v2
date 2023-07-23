@@ -29,6 +29,7 @@ export default class extends AbstractView {
 
             <p>
             <a href="/TellYourself" data-link>Back</a>
+            <a href="/SelfCareerAwareness" data-link>Next</a>
             </p>
         `;
     }

@@ -9,6 +9,10 @@ import BeforeInterview from "./views/BeforeInterview.js";
 import DuringInterview from "./views/DuringInterview.js";
 import TellYourself from "./views/TellYourself.js";
 import SelfDescribeWords from "./views/SelfDescribeWords.js";
+import SelfCareerAwareness from "./views/SelfCareerAwareness.js";
+import Questions from "./views/Questions.js";
+import KeyAreas from "./views/KeyAreas.js";
+import AfterTheInterview from "./views/AfterTheInterview.js";
 
 const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 
@@ -38,8 +42,10 @@ const router = async () => {
         { path: "/DuringInterview", view: DuringInterview},
         { path: "/TellYourself", view: TellYourself},
         { path: "/SelfDescribeWords", view: SelfDescribeWords},
-        
-        
+        { path: "/SelfCareerAwareness", view: SelfCareerAwareness},
+        { path: "/Questions", view: Questions},
+        { path: "/KeyAreas", view: KeyAreas},
+        { path: "/AfterTheInterview", view: AfterTheInterview},
     ];
 
     // Test each route for potential match
