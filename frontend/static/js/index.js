@@ -1,11 +1,14 @@
 import Home from "./views/Home.js";
 import Profile from "./views/Profile.js";
+import PersonalDetails from "./views/PersonalDetails.js";
+import Education from "./views/Education.js";
+import WorkExperience from "./views/WorkExperience.js";
+import Referees from "./views/Referees.js";
 import Posts from "./views/Posts.js";
 import PostView from "./views/PostView.js";
 import InterviewSkills from "./views/InterviewSkills.js";
 import JobSearchProcess from "./views/JobSearchProcess.js";
 import BeforeInterview from "./views/BeforeInterview.js";
-
 import DuringInterview from "./views/DuringInterview.js";
 import TellYourself from "./views/TellYourself.js";
 import SelfDescribeWords from "./views/SelfDescribeWords.js";
@@ -29,7 +32,11 @@ const navigateTo = url => {
 const router = async () => {
     const routes = [
         { path: "/", view: Home },
-        { path: "/profile", view: Profile},
+        // { path: "/profile", view: Profile},
+         {path: "/PersonalDetails", view: PersonalDetails},
+        { path: "/Education", view: Education},
+        { path: "/WorkExperience", view: WorkExperience},
+        { path: "/Referees", view: Referees},
         { path: "/posts", view: Posts },
         { path: "/posts/:id", view: PostView },
         { path: "/interview_skills", view: InterviewSkills},
@@ -61,7 +68,8 @@ const router = async () => {
 
     const view = new match.route.view(getParams(match));
 
-    document.querySelector("#app").innerHTML = await view.getHtml();
+    document.querySelector('main').innerHTML = await view.getHtml();
+    await view.afterRender();
 };
 
 window.addEventListener("popstate", router);

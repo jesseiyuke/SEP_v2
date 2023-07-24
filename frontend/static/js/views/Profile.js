@@ -8,34 +8,14 @@ export default class extends AbstractView {
 
     async getHtml() {
         return `
-            <h1>Student Profile</h1>
-            <p>You are viewing your profile.</p>
-            <form class="form-control">
-                <label for="fname">First Name:</label>
-                <input type="text" id="fname" name="fname" required>
-                <br/>
+            <div class="container-1">
+                <a href="/PersonalDetails" data-link class="button">Personal Details</a>
+                <a href="/Education" data-link class="button">Education</a>
+                <a href="/WorkExperience" data-link class="button">Work Experience</a>
+                <a href="/Referees" data-link class="button">Referees</a>
+            </div>
 
-                <label for="fname">Last Name:</label>
-                <input type="text" id="lname" name="lname" required>
-                <br/>
-
-                <label for="cell">Cellphone:</label>
-                <input type="text" id="cell" name="cell" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <br/>
-
-                <label for="citizen">Are you a South African Citizen?</label>
-                <input type="radio" value="true" id="citizenYes" name="citizen"/>Yes
-                <input type="radio" value="false" id="citizenNo" name="citizen"/>No
-
-                <label for="idNumber">ID/Passport Number:</label>
-                <input type="text" id="idNumber" name="idNumber" required>
-                <br/>
-
-                <button type="submit">Save</button>
-            </form>
+            <hr>
         `;
     }
 }
