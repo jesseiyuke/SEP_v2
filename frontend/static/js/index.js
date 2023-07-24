@@ -62,13 +62,16 @@ const router = async () => {
     const view = new match.route.view(getParams(match));
 
     document.querySelector("#app").innerHTML = await view.getHtml();
+
+    // console.log(match.route.view());
 };
 
 window.addEventListener("popstate", router);
 
 document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("click", e => {
-        if (e.target.matches("[data-link]")) {
+        if ( e.target.matches("[data-link]")) {
+            console.log("Clicked element is <i> tag");
             e.preventDefault();
             navigateTo(e.target.href);
         }
@@ -77,12 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
     router();
 });
 
+//|| || e.target.matches('#myLink i')
+
 //Arrows
 let arrow = document.querySelectorAll(".arrow");
 for (var i = 0; i < arrow.length; i++) {
   arrow[i].addEventListener("click", (e)=>{
  let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
- console.log(arrowParent);
+//  console.log(arrowParent);
  arrowParent.classList.toggle("showMenu");
   });
 }
@@ -90,7 +95,7 @@ for (var i = 0; i < arrow.length; i++) {
 //Open-close sidebar
 let sidebar = document.querySelector(".sidebar");
 let sidebarBtn = document.querySelector(".bx-menu");
-console.log(sidebarBtn);
+// console.log(sidebarBtn);
 sidebarBtn.addEventListener("click", ()=>{
   sidebar.classList.toggle("close");
 });

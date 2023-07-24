@@ -10,32 +10,30 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <nav class="sidebar">
+    <nav class="sidebar close">
 <!--         <div class="logo-details">
             <a href="/" class="nav__link" data-link><img src="/static/images/WitsLogo.png" alt="WitsLogo"></a>
         </div> -->
+        <div class="logo-details">
+            <img src="static/images/logo-white.png" alt="WitsLogo">
+        </div>
         <ul class="nav-links">
-            <li>
-                <div class="logo">
-                    <img src="static/images/logo-white.png" alt="WitsLogo">
-                </div>
-              </li>
 
             <li>
                 <a href="/" class="nav__link" data-link>
-                <i class='bx bx-grid-alt' ></i>
-                Home</a>
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="link_name">Home</span>
+                </a>
                 <ul class="sub-menu blank">
                     <li><a href="/" class="nav__link" data-link>Home</a></li>
                 </ul>
             </li>
+            <!-- id="myLink"  -->
 
             <li>
                 <a href="/profile" class="nav__link" data-link>
-                    <i class='bx bx-user-pin' ></i>
-                    Student Profile
-<!--                     <i class='bx bx-user-pin' ></i>
-                    <span class="link_name">Student Profile</span> -->
+                    <i class='bx bx-user-pin'></i>
+                    <span class="link_name">Student Profile</span>
                 </a>
                 <ul class="sub-menu blank">
                     <li><a href="/profile" class="nav__link" data-link>Student Profile</a></li>
@@ -45,9 +43,7 @@
             <li>
                 <a href="/posts" class="nav__link" data-link>
                     <i class='bx bx-search-alt-2'></i>
-                    Search & Apply
-<!--                     <i class='bx bx-search-alt-2'></i>
-                    <span class="link_name">Search & Apply</span> -->
+                    <span class="link_name">Search & Apply</span>
                 </a>
                 <ul class="sub-menu blank">
                     <li><a href="/posts" class="nav__link" data-link>Search & Apply</a></li>
@@ -58,9 +54,7 @@
                 <div class="iocn-link">
                   <a href="/interview_skills" class="nav__link" data-link>
                     <i class='bx bx-collection' ></i>
-                    Interview Skills
-<!--                     <i class='bx bx-collection' ></i>
-                    <span class="link_name">Interview Skills</span> -->
+                    <span class="link_name">Interview Skills</span>
                   </a>
                   <i class='bx bxs-chevron-down arrow' ></i>
                 </div>
@@ -76,22 +70,22 @@
             <li>
                 <a ref="#" class="nav__link" data-link>
                   <i class='bx bx-log-out' ></i>
-                  Logout
-                  <!-- <span class="nav__link">Logout</span> -->
+                  <span class="link_name">Logout</span>
                 </a>
                 <ul class="sub-menu blank">
                   <li><a href="/" class="nav__link" data-link>Logout</a></li>
                 </ul>
-              </li>
+            </li>
 
-        </ul>
+          </ul>
     </nav>
 
-    <!-- <section id="app" class="home-section">
+    <section class="home-section">
         <div  class="home-content">
           <i class='bx bx-menu' ></i>
+          <div id="app"></div>
         </div>
-    </section> -->
+    </section>
 
     <!-- <section class="home-section">
         <div class="home-content">
@@ -101,16 +95,9 @@
       </section> -->
 
 
-    <div id="app"></div>
+    <!-- <div id="app"></div> -->
     <footer>
       <div class="footer-content">
-          <!-- <ul class="socials">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-              <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-          </ul> -->
       </div>
       <div class="footer-bottom">
           <p>copyright &copy; 2000-2023 - University of the Witwatersrand, Johannesburg.</p>
