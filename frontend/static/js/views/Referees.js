@@ -15,6 +15,7 @@ export default class extends AbstractView {
                 <a href="/Referees" class="nav__link active">Referees</a>
                 <a href="/GenerateCV" class="nav__link generate-cv">Generate CV</a>
             </nav>
+            
         `;
     }
 }

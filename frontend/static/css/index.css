@@ -433,32 +433,26 @@ a {
   margin: 20px auto;
 }
 
-.button {
-  display: block;
-  text-align: center;
-  padding: 10px 20px;
-  text-decoration: none;
-  background-color: #f0f0f0;
-  color: #333;
-  border: 1px solid #ccc;
+.center-container {
+  display: flex;
+  justify-content: center;
+  /* Horizontally center the content */
+  height: 100vh;
+  /* Adjust the height as needed to center the content within the viewport */
+  /* align-items: center; */
+  /* Vertically center the content */
+}
+
+button {
+  width: 100%;
+  padding: 10px 0;
+  margin: 10px auto;
   border-radius: 5px;
-  transition: background-color 0.2s;
-}
-
-.button:hover {
-  background-color: #ddd;
-}
-
-.button:active {
-  background-color: #ccc;
-}
-
-/* Style for the active button */
-.button.active {
-  background-color: #007bff;
-  /* Change to the desired active button color */
+  border: none;
+  background: #007bff;
+  font-size: 14px;
+  font-weight: 600;
   color: #fff;
-  /* Change to the desired text color for active button */
 }
 
 /* Add styling to the navigation bar */
@@ -534,6 +528,26 @@ a {
 
 .text-danger.active {
   padding: 0.3em;
+}
+
+.validation-error {
+  color: #900;
+}
+
+fieldset {
+  border: none;
+  border-top: 2px solid #696969;
+}
+
+legend {
+  text-align: center;
+  /* Center the text horizontally */
+  /* width: 100%; */
+  /* Optional: Adjust the width of the legend */
+}
+
+.profile-details {
+  padding: 20px;
 }
 
 
