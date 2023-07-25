@@ -14,7 +14,7 @@ export default class extends AbstractView {
                 <a href="/WorkExperience" data-link class="button">Work Experience</a>
                 <a href="/Referees" data-link class="button">Referees</a>
             </div>
-
+            
             <hr>
         `;
     }

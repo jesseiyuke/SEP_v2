@@ -32,8 +32,8 @@ const navigateTo = url => {
 const router = async () => {
     const routes = [
         { path: "/", view: Home },
-        // { path: "/profile", view: Profile},
-         {path: "/PersonalDetails", view: PersonalDetails},
+        // { path: "/Profile", view: Profile},
+        {path: "/PersonalDetails", view: PersonalDetails},
         { path: "/Education", view: Education},
         { path: "/WorkExperience", view: WorkExperience},
         { path: "/Referees", view: Referees},
@@ -68,15 +68,51 @@ const router = async () => {
 
     const view = new match.route.view(getParams(match));
 
-    document.querySelector('main').innerHTML = await view.getHtml();
+    document.querySelector('#app').innerHTML = await view.getHtml();
     await view.afterRender();
+
+    // console.log(match.route.view());
 };
 
 window.addEventListener("popstate", router);
 
+
+// Get the anchor element
+/* const anchorElement = document.querySelector('a.nav__link');
+
+// Add a click event listener to the anchor element
+anchorElement.addEventListener('click', function(event) {
+    // Prevent the default behavior of the anchor (e.g., navigating to the href URL)
+    event.preventDefault();
+
+ 
+
+    // Check if the actual target of the click event is the anchor itself
+    if (event.target === anchorElement) {
+        // The click was on the anchor element, and you can handle the click action here
+        // For example, you can redirect to the link's URL manually:
+        window.location.href = anchorElement.getAttribute('href');
+        navigateTo(window.location.href);
+    }
+}); */
+
+// document.addEventListener("DOMContentLoaded", () => {
+//     document.body.addEventListener("click", e => {
+//         if ( e.target === anchorElement) {
+//             console.log("Clicked element is <i> tag");
+//             e.preventDefault();
+//             navigateTo(e.target.href);
+//         }
+//     });
+
+//     router();
+// });
+
 document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("click", e => {
         if (e.target.matches("[data-link]")) {
+            // console.log(e.target);
+            // console.log("Clicked element is <i> tag");
             e.preventDefault();
             navigateTo(e.target.href);
         }
@@ -85,20 +121,23 @@ document.addEventListener("DOMContentLoaded", () => {
     router();
 });
 
-// //Arrows
-// let arrow = document.querySelectorAll(".arrow");
-// for (var i = 0; i < arrow.length; i++) {
-//   arrow[i].addEventListener("click", (e)=>{
-//  let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
-//  console.log(arrowParent);
-//  arrowParent.classList.toggle("showMenu");
-//   });
-// }
+//|| || e.target.matches('#myLink i')
+//e.target.matches("[data-link]")
 
-// //Open-close sidebar
-// let sidebar = document.querySelector(".sidebar");
-// let sidebarBtn = document.querySelector(".bx-menu");
+//Arrows
+let arrow = document.querySelectorAll(".arrow");
+for (var i = 0; i < arrow.length; i++) {
+  arrow[i].addEventListener("click", (e)=>{
+ let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+//  console.log(arrowParent);
+ arrowParent.classList.toggle("showMenu");
+  });
+}
+
+//Open-close sidebar
+let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".bx-menu");
 // console.log(sidebarBtn);
-// sidebarBtn.addEventListener("click", ()=>{
-//   sidebar.classList.toggle("close");
-// });
+sidebarBtn.addEventListener("click", ()=>{
+  sidebar.classList.toggle("close");
+});
