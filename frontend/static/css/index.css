@@ -75,6 +75,7 @@ body{
 .sidebar.close .nav-links li .iocn-link{
   display: block
 }
+
 .sidebar .nav-links li i{
   height: 50px;
   min-width: 45px;
@@ -84,6 +85,16 @@ body{
   font-size: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+.sidebar .nav-links li img{
+  height: 40px;
+  min-width: 45px;
+  text-align: center;
+  line-height: 50px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 10%;
 }
 .sidebar .nav-links li.showMenu i.arrow{
   transform: rotate(-180deg);
@@ -95,6 +106,13 @@ body{
   display: flex;
   align-items: center;
   text-decoration: none;
+  overflow: hidden;
+}
+
+.sidebar.close .nav-links li a{
+  color: transparent;
+  text-decoration: none;
+  transition: all 0.4s ease;
 }
 .sidebar .nav-links li a .link_name{
   font-size: 18px;

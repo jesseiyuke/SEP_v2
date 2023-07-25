@@ -68,10 +68,43 @@ const router = async () => {
 
 window.addEventListener("popstate", router);
 
+
+// Get the anchor element
+/* const anchorElement = document.querySelector('a.nav__link');
+
+// Add a click event listener to the anchor element
+anchorElement.addEventListener('click', function(event) {
+    // Prevent the default behavior of the anchor (e.g., navigating to the href URL)
+    event.preventDefault();
+
+ 
+
+    // Check if the actual target of the click event is the anchor itself
+    if (event.target === anchorElement) {
+        // The click was on the anchor element, and you can handle the click action here
+        // For example, you can redirect to the link's URL manually:
+        window.location.href = anchorElement.getAttribute('href');
+        navigateTo(window.location.href);
+    }
+}); */
+
+// document.addEventListener("DOMContentLoaded", () => {
+//     document.body.addEventListener("click", e => {
+//         if ( e.target === anchorElement) {
+//             console.log("Clicked element is <i> tag");
+//             e.preventDefault();
+//             navigateTo(e.target.href);
+//         }
+//     });
+
+//     router();
+// });
+
 document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("click", e => {
-        if ( e.target.matches("[data-link]")) {
-            console.log("Clicked element is <i> tag");
+        if (e.target.matches("[data-link]")) {
+            // console.log(e.target);
+            // console.log("Clicked element is <i> tag");
             e.preventDefault();
             navigateTo(e.target.href);
         }
@@ -81,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //|| || e.target.matches('#myLink i')
+//e.target.matches("[data-link]")
 
 //Arrows
 let arrow = document.querySelectorAll(".arrow");
