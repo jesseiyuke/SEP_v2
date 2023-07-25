@@ -1,49 +1,145 @@
-function validateForm() {
-    // Get form field values
-    const firstName = document.getElementById('fname').value;
-    const lastName = document.getElementById('lname').value;
-    const cellPhone = document.getElementById('cell').value;
-    const email = document.getElementById('email').value;
-    const citizenYes = document.getElementById('citizenYes').checked;
-    const citizenNo = document.getElementById('citizenNo').checked;
-
-    // Perform form validation
-    if (firstName.trim() === '') {
-        alert('Please enter your First Name.');
-        return false;
-    }
-
-    if (lastName.trim() === '') {
-        alert('Please enter your Last Name.');
-        return false;
-    }
-
-    if (cellPhone.trim() === '') {
-        alert('Please enter your Cellphone number.');
-        return false;
-    }
-
-    if (email.trim() === '') {
-        alert('Please enter your Email.');
-        return false;
-    } else if (!isValidEmail(email)) {
-        alert('Please enter a valid Email address.');
-        return false;
-    }
-
-    if (!citizenYes && !citizenNo) {
-        alert('Please select whether you are a South African Citizen.');
-        return false;
-    }
-
-    // Add more validations for other fields as needed
-
-    // If all validations pass, return true to submit the form
-    return true;
-}
-
 function isValidEmail(email) {
     // Basic email format validation using regular expression
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
 }
+
+function isValidSANumber(number) {
+
+    const numPattern = /^((\+27|0)[1-9]\d{8})$/;
+    return numPattern.test(number);
+}
+
+function LuhnAlgorithm(text) {
+
+    var arr = [...text];
+    var sum = 0;
+    var n = arr.length;
+
+    for (var i = 0; i < n; i++)
+    {
+        arr[i] = parseInt(arr[i]);
+    }
+
+    for (var i = 1; i < n; i = i + 2)
+    {
+        var v = arr[n-1-i]*2;
+
+        if (v > 9){
+            arr[n-1-i] = v - 9;
+        }
+        else{
+            arr[n-1-i] = v;
+        }
+    }
+
+    for (var i = 0; i < n; i++)
+    {
+        sum = sum + arr[i];
+    }
+
+    if (sum % 10 === 0){
+        console.log(sum);
+        return true;
+    }
+    else{
+        console.log(sum);
+        return false;
+    }
+}
+
+export function validateForm() {
+    let isValid = true;
+
+    const validationErrorElements = document.querySelectorAll('.validation-error');
+
+    validationErrorElements.forEach(element => {
+    element.textContent = ''; // Empty the content of the element
+    element.classList.remove('text-danger'); // Remove the 'text-danger' class
+    });
+
+    // Get form field values
+    const firstNameInput = document.getElementById('fname').value;
+    const firstNameError = document.getElementById('fnameValidation');
+    if (firstNameInput.trim() === "" || firstNameInput === null)
+    {
+        firstNameError.textContent = "Please enter your first name.";
+        isValid = false;
+    }
+
+    const lastNameInput = document.getElementById('lname').value;
+    const lastNameError = document.getElementById('lnameValidation');
+    if (lastNameInput.trim() === "" || lastNameInput === null)
+    {
+        lastNameError.textContent = "Please enter your last name.";
+        isValid = false;
+    }
+
+    const celllInput = document.getElementById('cell').value;
+    const cellError = document.getElementById('cellValidation');
+    if (celllInput.trim() === "" || celllInput === null)
+    {
+        cellError.textContent = "Please enter a cellphone number.";
+        isValid = false;
+    } else {
+        if(!isValidSANumber(celllInput)) {
+            cellError.textContent = "Please enter a valid South African number.";
+            isValid = false;
+        } else {
+            cellError.textContent = "";
+        }
+    }
+
+    const emailInput = document.getElementById('email').value;
+    const emailError = document.getElementById('emailValidation');
+    if (emailInput.trim() === "" || emailInput === null)
+    {
+        emailError.textContent = "Please enter an email.";
+        isValid = false;
+    } else {
+        if (!isValidEmail(emailInput)) {
+            emailError.textContent = "Please enter a valid email.";
+            isValid = false;
+        } else {
+            emailError.textContent = "";
+        }
+    }
+
+    const citizenInputs = document.querySelectorAll('#citizenContainer input[name="citizen"]');
+    const citizenError = document.getElementById('citizenValidation');
+    let isCitizenSelected = false;
+
+    citizenInputs.forEach(input => {
+    if (input.checked) {
+        isCitizenSelected = true;
+    }
+    });
+
+    if (!isCitizenSelected)
+    {
+        citizenError.textContent = "Please select an option.";
+        isValid = false;
+    }
+    
+    const idNumberInput = document.getElementById('idNumber').value;
+    const idNumberError = document.getElementById('idNumberValidation');
+    if (idNumberInput.trim() === "" || idNumberInput === null)
+    {
+        idNumberError.textContent = "Please enter an ID number.";
+        isValid = false;
+    } else{
+
+        if(!LuhnAlgorithm(idNumberInput))
+        {
+            idNumberError.textContent = "Please enter a valid ID number.";
+            isValid = false;
+        }
+    }
+
+    // const lastName = document.getElementById('lname').value;
+    // const cellPhone = document.getElementById('cell').value;
+    // const email = document.getElementById('email').value;
+
+    return isValid;
+}
+
