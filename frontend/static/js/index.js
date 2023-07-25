@@ -32,8 +32,8 @@ const navigateTo = url => {
 const router = async () => {
     const routes = [
         { path: "/", view: Home },
-        // { path: "/profile", view: Profile},
-         {path: "/PersonalDetails", view: PersonalDetails},
+        // { path: "/Profile", view: Profile},
+        {path: "/PersonalDetails", view: PersonalDetails},
         { path: "/Education", view: Education},
         { path: "/WorkExperience", view: WorkExperience},
         { path: "/Referees", view: Referees},
@@ -68,7 +68,7 @@ const router = async () => {
 
     const view = new match.route.view(getParams(match));
 
-    document.querySelector('main').innerHTML = await view.getHtml();
+    document.querySelector('#app').innerHTML = await view.getHtml();
     await view.afterRender();
 
     // console.log(match.route.view());
