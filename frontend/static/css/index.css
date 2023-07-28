@@ -390,6 +390,10 @@ footer{
     overflow-y: auto;
 } */
 
+#app{
+  width: 100%;
+}
+
 a {
     color: #009579;
 }
@@ -539,9 +543,11 @@ a {
 
 .education__section{
   border: 5px solid green;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .education__section table{
@@ -587,10 +593,12 @@ a {
 
   background-color: rgb(240, 250, 250);
   border: 5px solid red;
-  /* top: 0;
-  left: 0;
-  width: 80.5%;
-  position: fixed;
-  margin:5rem 0 0 18rem; */
-
+  margin-top: 8rem;
+  width: 60%;
+  height: 60%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+  transition: .5s;
 }

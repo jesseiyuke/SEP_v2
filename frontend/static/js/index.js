@@ -141,3 +141,33 @@ let sidebarBtn = document.querySelector(".bx-menu");
 sidebarBtn.addEventListener("click", ()=>{
   sidebar.classList.toggle("close");
 });
+
+document.addEventListener("DOMContentLoaded", () =>{
+
+    let button = document.getElementById("closeformbbbtn");
+    var form = document.getElementById("education");
+    let openbtn = document.getElementById("openeduc")
+    button.addEventListener("click", () => {
+
+            form.style.display = "none";
+            console.log("none working");
+
+    });
+
+    document.body.addEventListener("click", e => {
+        if (e.target.matches("[open-edu]")) {
+            console.log(e.target.id);
+            e.preventDefault();
+            form.style.display = "block";
+            console.log("block working");
+        }
+    });
+
+    // openbtn.addEventListener("click", () => {
+
+    //         form.style.display = "block";
+    //         console.log("block working");
+    // });
+
+
+});

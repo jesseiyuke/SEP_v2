@@ -36,7 +36,7 @@ export default class extends AbstractView {
                             <td>20/12/2019</td>
                             <td>20/12/2022</td>
                             <td>BSc - Computer Science</td>
-                            <td><a href="#">View details</a></td>
+                            <td><a id="1" href="#" open-edu>View details</a></td>
                         </tr>
 
                         <tr>
@@ -44,7 +44,7 @@ export default class extends AbstractView {
                             <td>20/12/2019</td>
                             <td>20/12/2022</td>
                             <td>Eng - Electrical eng</td>
-                            <td><a href="#">View details</a></td>
+                            <td><a id="2" href="#" open-edu>View details</a></td>
                         </tr>
 
                     </tbody>
@@ -83,6 +83,9 @@ export default class extends AbstractView {
                     <button type="submit">Edit</button>
                     <button type="submit">Delete</button>
                 </form>
+
+                <button id="closeformbbbtn">Close Form</button>
+                <script src="/frontend/static/js/validations/validatePersonalDetails.js"></script>
             </section>
 
             

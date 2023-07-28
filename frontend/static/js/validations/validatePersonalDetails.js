@@ -47,3 +47,11 @@ function isValidEmail(email) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
 }
+
+// let sectionform = document.getElementById("education");
+// let closeform = document.getElementById("closeformbbbtn");
+
+// closeform.addEventListener("click", ()=>{
+//     console.log("Listener working");
+//     sectionform.style.display = "none";
+// });
