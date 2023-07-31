@@ -1,0 +1,68 @@
+{
+    "student": {
+        "id": "12345678-1234-1234-1234-1234567890AB",
+        "address": "123 Main Street",
+        "idNumber": "ABC123",
+        "driversLicenseId": 123,
+        "careerObjective": "Seeking a position in software development.",
+        "genderId": 1,
+        "raceId": 2,
+        "nationalityId": 3,
+        "yearOfStudyId": 4,
+        "departmentId": 5,
+        "skills": "C#, ASP.NET Core, JavaScript",
+        "achivements": "Received academic excellence award.",
+        "interests": "Reading, Coding",
+        "experiences": [
+            {
+                "id": 1,
+                "employerName": "ABC Company",
+                "startDate": "2023-01-01T00:00:00",
+                "endDate": "2023-12-31T00:00:00",
+                "jobTitle": "Software Developer",
+                "tasksAndResponsibilities": "Developing web applications."
+            }
+        ],
+            "qualifications": [
+                {
+                    "id": 1,
+                    "institution": "XYZ University",
+                    "startDate": "2020-09-01T00:00:00",
+                    "endDate": "2023-06-30T00:00:00",
+                    "qualificationTitle": "Bachelor of Computer Science",
+                    "subjects": "Programming, Algorithms",
+                    "majors": "Software Engineering",
+                    "subMajors": "Data Science",
+                    "research": "Machine Learning"
+                }
+            ],
+        "referees": [
+            {
+                "id": 1,
+                "name": "John Doe",
+                "jobTitle": "Senior Software Engineer",
+                "insitution": "XYZ Tech",
+                "cell": "123-456-7890",
+                "email": "john.doe@example.com"
+            }
+        ]
+    },
+    "yearOfStudyOptions": [
+        {
+            "id": 1,
+            "name": "Freshman"
+        },
+        {
+            "id": 2,
+            "name": "Sophomore"
+        },
+        {
+            "id": 3,
+            "name": "Junior"
+        },
+        {
+            "id": 4,
+            "name": "Senior"
+        }
+    ]
+}
