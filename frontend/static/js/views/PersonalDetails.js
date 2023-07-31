@@ -11,20 +11,17 @@ export default class extends AbstractView {
         return `
 
             <nav class="navbar">
-                <a href="/PersonalDetails" class="nav__link active">Personal Details</a>
-                <a href="/Education" class="nav__link">Education</a>
-                <a href="/WorkExperience" class="nav__link">Work Experience</a>
-                <a href="/Referees" class="nav__link">Referees</a>
-                <a href="/GenerateCV" class="nav__link generate-cv">Generate CV</a>
+                <a href="/PersonalDetails" class="nav_link active">Personal Details</a>
+                <a href="/Education" class="nav_link">Education</a>
+                <a href="/WorkExperience" class="nav_link">Work Experience</a>
+                <a href="/Referees" class="nav_link">Referees</a>
+                <a href="/GenerateCV" class="nav_link generate-cv">Generate CV</a>
             </nav>
 
             <br>
             <div class="center-container">
                 <form id="personalDetailsForm">
                     <fieldset>
-                        <legend>
-                            <h3>PERSONAL DETAILS</h3>
-                        </legend>
                         <div class="personal-details">
                             <label for="fname">First Name:</label>
                             <input type="text" id="fname" name="fname">

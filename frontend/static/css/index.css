@@ -232,7 +232,7 @@ body{
 .home-section{
   position: relative;
   /* background: #E4E9F7; */
-  height: 100vh;
+  height: 90vh;
   left: 260px;
   width: calc(100% - 260px);
   transition: all 0.5s ease;
@@ -246,6 +246,7 @@ body{
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  height: 90vh;
 }
 .home-section .home-content .bx-menu,
 .home-section .home-content .text{
@@ -294,11 +295,12 @@ footer{
   left: 0;
   right: 0;
   /* background: #020303; */
-  height: auto;
+  height: 7vh;
   width: 100vw;
   font-family: "Open Sans";
   /* padding-top: 40px; */
-  /* color: #000; */
+  /* color: #000; */  
+  border-top: 1px solid #dcdcdc;
 }
 .footer-content{
   display: flex;
@@ -318,6 +320,8 @@ footer{
   margin: 10px auto;
   line-height: 28px;
   font-size: 14px;
+  align-items: center;
+  justify-content: center;
 }
 .socials{
   list-style: none;
@@ -343,7 +347,8 @@ footer{
 }
 
 .footer-bottom{
-  /* background: #020303; */
+  background: #ffffff;
+  height: 8vh;
   width: 100vw;
   padding: 20px 0;
   text-align: center;
@@ -391,7 +396,9 @@ footer{
 } */
 
 #app{
-  width: 100%;
+  width: 100vw;
+  height: 86.5vh;
+  overflow-y: scroll;
 }
 
 a {
@@ -467,7 +474,7 @@ button {
 }
 
 /* Style for the navigation links */
-.nav__link {
+.nav_link {
   text-decoration: none;
   color: #333;
   padding: 10px 20px;
@@ -477,7 +484,7 @@ button {
 }
 
 /* Style for the underline on hover */
-.nav__link:hover::after {
+.nav_link:hover::after {
   content: "";
   position: absolute;
   left: 0;
@@ -490,7 +497,7 @@ button {
 }
 
 /* Style for the active link */
-.nav__link.active::after {
+.nav_link.active::after {
   content: "";
   position: absolute;
   left: 0;
@@ -540,7 +547,7 @@ button {
 
 fieldset {
   border: none;
-  border-top: 2px solid #696969;
+  /* border-top: 2px solid #696969; */
 }
 
 legend {
