@@ -1,16 +1,20 @@
+// PostView.js (updated)
+
 import AbstractView from "./AbstractView.js";
 
 export default class extends AbstractView {
-    constructor(params) {
-        super(params);
-        this.postId = params.id;
-        this.setTitle("Viewing Post");
-    }
+  constructor(params) {
+    super(params);
+    this.postId = params.id;
+    this.setTitle("Viewing Post");
+  }
 
-    async getHtml() {
-        return `
-            <h1>Post</h1>
-            <p>You are viewing post #${this.postId}.</p>
-        `;
-    }
+  async getHtml() {
+    return `
+      <div class="post-details"> <!-- Updated class name to avoid conflicts -->
+        <h1>Post</h1>
+        <p>You are viewing post #${this.postId}.</p>
+      </div>
+    `;
+  }
 }

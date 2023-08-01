@@ -10,10 +10,6 @@
 body {
     --nav-width: 260px;
     margin: 0 0 0 var(--nav-width);
-    /* font-family: 'Quicksand', sans-serif;
-    font-size: 18px; */
-
-    overflow: hidden;
 }
 
  /* Sidebar setup */
@@ -190,15 +186,12 @@ body {
   }
 
 /* getHtml */
-.home-section{
+.home-section {
   position: relative;
-  /* background: #E4E9F7; */
-  height: 100vh;
-  left: 260px;
-  width: calc(100% - 260px);
-  transition: all 0.5s ease;
+  min-height: 100vh;
   padding: 12px;
 }
+
 .sidebar.close ~ .home-section{
   left: 78px;
   width: calc(100% - 78px);
@@ -248,77 +241,83 @@ body {
   }
 } 
 
-/* footer */
-footer{
-  position: absolute;
+/* Footer */
+footer {
+  position: fixed;
   bottom: 0;
   left: 0;
-  right: 0;
+  width: 100%;
   background: #11101d;
-  height: auto;
-  width: 100vw;
   font-family: "Open Sans";
-  /* padding-top: 40px; */
   color: #fff;
 }
-.footer-content{
+
+.footer-content {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   text-align: center;
 }
-.footer-content h3{
+
+.footer-content h3 {
   font-size: 1.8rem;
   font-weight: 400;
   text-transform: capitalize;
   line-height: 3rem;
 }
-.footer-content p{
+
+.footer-content p {
   max-width: 500px;
   margin: 10px auto;
   line-height: 28px;
   font-size: 14px;
 }
-.socials{
+
+.socials {
   list-style: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin: 1rem 0 3rem 0; */
 }
-.socials li{
+
+.socials li {
   margin: 0 10px;
 }
-.socials a{
+
+.socials a {
   text-decoration: none;
   color: #fff;
 }
-.socials a i{
+
+.socials a i {
   font-size: 1.1rem;
   transition: color .4s ease;
-
 }
-.socials a:hover i{
+
+.socials a:hover i {
   color: aqua;
 }
 
-.footer-bottom{
+.footer-bottom {
   background: #11101d;
-  width: 100vw;
+  width: 100%;
   padding: 20px 0;
   text-align: center;
 }
-.footer-bottom p{
+
+.footer-bottom p {
   font-size: 14px;
   word-spacing: 2px;
   text-transform: capitalize;
 }
-.footer-bottom span{
+
+.footer-bottom span {
   text-transform: uppercase;
   opacity: .4;
   font-weight: 200;
 }
+
 
 /* NAV */
   
@@ -371,3 +370,222 @@ a {
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
+
+
+
+/*SPA JOBPOSTS*/
+
+.custom-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Additional styles for the header and hr */
+.custom-head h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+/* Horizontal line styles */
+hr {
+  width: 50%;
+  border: 1px solid #ddd;
+  margin: 0;
+}
+
+/* SEARCH and FILTER */
+
+/* Custom search dropdown styles */
+.custom-search-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Search input styles */
+.search-input {
+  position: relative;
+}
+
+.search-input input[type="search"] {
+  width: 400px;
+  height: 40px;
+  font-size: 16px;
+  padding: 0px 40px 0px 20px;
+  border-radius: 40px;
+  outline: none;
+  border: solid gray 2px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #888;
+}
+
+/* Filter dropdown styles */
+.filter-dropdown {
+  position: relative;
+  margin-left: 10px;
+}
+
+.filter-btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.filter-btn i {
+  margin-right: 6px;
+}
+
+.filter-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  display: none;
+  list-style: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 6px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 200px; /* Set a width that can accommodate all options comfortably */
+  min-width: 140px; /* Set a minimum width to prevent options from collapsing */
+}
+
+.filter-options li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+/* Show filter options when the filter button is hovered */
+.filter-btn:hover + .filter-options {
+  display: block;
+}
+
+
+
+/* Style the page container */
+
+.page-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px; /* Add spacing between containers */
+  margin-bottom: 20rem;
+  padding: 10px; /* Add some padding for spacing */
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the job posts container */
+.job-posts-container {
+  flex: 1; /* Set a fixed width for job posts container */
+  max-height: calc(100vh - 100px); /* Account for header and footer heights */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1rem;
+  margin-right: 1rem;
+  overflow-y: auto;
+}
+
+.job-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 1rem;
+  transition: box-shadow 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.job-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.job-card h2 {
+  color: #007bff;
+  font-size: 1.5rem;
+  font-weight: bold; /* Make the job title bold */
+  margin-bottom: 0.5rem;
+}
+
+.job-card p {
+  color: #444;
+  margin: 0.5rem 0;
+  font-weight: bold; /* Make the text before the colon bold */
+}
+
+/* Style the job details container */
+.job-details-container {
+  flex: 1; /* Allow job details to occupy the remaining space */
+  padding: 10px; /* Add some padding for spacing */
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-height: calc(100% - 20px); /* Set maximum height for the container */
+  overflow-y: auto; /* Add vertical scroll when content exceeds max height */
+}
+
+/* Style the job details section */
+.job-details {
+  color: #333;
+  font-size: 1.1rem;
+  text-align: left;
+}
+
+/* Style the job details section heading (job title) */
+.job-details h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Style the job details section paragraphs */
+.job-details p {
+  margin-bottom: 0.7rem;
+}
+
+/* Style the job details section when it's expanded */
+.job-details.expanded {
+  width: 50%; /* Adjust width to expand the section */
+}
+
+/* Apply button styles */
+.apply-btn {
+  margin-top: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.apply-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.apply-btn:focus {
+  outline: none;
+}
+
+.apply-btn:active {
+  background-color: #0056b3;
+  transform: scale(0.95);
+}
+

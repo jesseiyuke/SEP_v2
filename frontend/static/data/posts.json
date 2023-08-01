@@ -1,0 +1,54 @@
+{
+  "postId": 21,
+  "employer": {
+    "title": "Mr",
+    "jobTitle": "Lead Developer",
+    "companyRegistrationNumber": "2011/000123/07",
+    "businessName": "Wits Innovation Centre",
+    "tradingName": "WIC",
+    "registeredAddress": "1 Jan Smuts Avenue",
+    "businessType":{
+      "name": "Private Company"
+    },
+    "status":{
+      "name": "Approved"
+    },
+    "employerType": {
+      "name": "Internal"
+    }
+  },
+  "jobTitle": "Software Developer Intern",
+  "location": "Wits Plus Building, Third Floor",
+  "jobDescription": "Develop high quality software :) ",
+  "keyResponsibilities": "Write code|Give presentations|Join meetings",
+  "jobType": {
+    "name": "Full-time"
+  },
+  "weekHour": {
+    "range": "6-8 Hours"
+  },
+  "startDate": "19/07/23",
+  "endDate": "22/02/24",
+  "closingDate": "26/09/23",
+  "hourlyRate": 180.27,
+  "limitedToSA": true,
+  "limitedTo1stYear": false,
+  "limitedTo2ndYear": true,
+  "limitedTo3rdYear": true,
+  "limitedToHonours": false,
+  "limitedToGraduate": false,
+  "limitedToMasters": false,
+  "limitedToPhd": true,
+  "limitedToPostdoc": false,
+  "limitedToDepartment": false,
+  "limitedToFaculty": false,
+  "minimumRequirements": "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
+  "applicationInstruction": "Click the 'apply' button!",
+  "contactPerson": "John Doe",
+  "email": "JohnDoe@wits.ac.za",
+  "contactNumber": "0615493574",
+  "reviewerComment": "Looks like a fantastic opportunity!",
+  "applicationStatus":{
+    "name": "Offer Made"
+  }
+}
