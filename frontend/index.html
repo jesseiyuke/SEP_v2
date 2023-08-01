@@ -116,7 +116,21 @@
           <p>copyright &copy; 2000-2023 - University of the Witwatersrand, Johannesburg.</p>
       </div>
   </footer>
-    <script type="module" src="/static/js/index.js"></script>
-    
+  <script type="module" src="/static/js/index.js"></script>
+  <script>
+    var formData = new FormData();
+    function uploadFile() {
+      var fileInput = document.getElementById('fileInput');
+      var file = fileInput.files[0];
+      formData.append('file', file);
+      let fileName= file.name;
+      const docsDiv = document.getElementById('uploaded_files');
+      docsDiv.innerHTML += `<p>${fileName}</p>`;
+      fileInput.value = "";
+    }
+    function submitFiles(){
+      console.log(formData.forEach);
+    }
+  </script>
 </body>
 </html>

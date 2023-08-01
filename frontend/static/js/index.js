@@ -5,10 +5,11 @@ import PostView from "./views/PostView.js";
 import InterviewSkills from "./views/InterviewSkills.js";
 import JobSearchProcess from "./views/JobSearchProcess.js";
 import BeforeInterview from "./views/BeforeInterview.js";
-
 import DuringInterview from "./views/DuringInterview.js";
 import TellYourself from "./views/TellYourself.js";
 import SelfDescribeWords from "./views/SelfDescribeWords.js";
+import Apply from "./views/Apply.js";
+import { uploadFile } from "./postdocs.js";
 
 const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 
@@ -38,6 +39,7 @@ const router = async () => {
         { path: "/DuringInterview", view: DuringInterview},
         { path: "/TellYourself", view: TellYourself},
         { path: "/SelfDescribeWords", view: SelfDescribeWords},
+        { path:"/Apply", view: Apply}
         
         
     ];
@@ -76,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     router();
 });
-
 //Arrows
 let arrow = document.querySelectorAll(".arrow");
 for (var i = 0; i < arrow.length; i++) {

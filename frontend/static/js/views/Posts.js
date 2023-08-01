@@ -10,6 +10,7 @@ export default class extends AbstractView {
         return `
             <h1>Posts</h1>
             <p>You are viewing the available job posts, that fit your criteria.</p>
+            <a href="/Apply" class="nav__link" data-link>Apply</a>
         `;
     }
 }
