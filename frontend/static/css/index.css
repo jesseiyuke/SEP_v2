@@ -6,10 +6,8 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-
-body {
-    --nav-width: 260px;
-    margin: 0 0 0 var(--nav-width);
+body{
+  overflow: hidden;
 }
 .sidebar{
   position: fixed;
@@ -240,7 +238,6 @@ body {
   transition: all 0.5s ease;
   padding: 12px;
 }
-
 .sidebar.close ~ .home-section{
   left: 78px;
   width: calc(100% - 78px);
@@ -637,6 +634,7 @@ hr {
   cursor: pointer;
   font-size: 1rem;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  width: fit-content;
 }
 
 .apply-btn:hover {
