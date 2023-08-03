@@ -1,6 +1,8 @@
 import AbstractView from "./AbstractView.js";
 import { validateForm } from "../validations/validatePersonalDetails.js";
 
+
+
 export default class extends AbstractView {
     constructor(params) {
         super(params);
@@ -131,10 +133,18 @@ export default class extends AbstractView {
 
     async afterRender() {
 
-        // const response = await fetch("backend/data/data.json");
-        // const student = await response.json();
+        const sample = await fetch('http://127.0.0.1:5500/backend/data/data.json');
+        console.log(sample);
 
-        // document.getElementById("fname").value = student.name;
+        const student = await sample.json();
+        console.log(student.name);
+        
+        // const student = fetch('http://127.0.0.1:5500/backend/data/data.json')
+        // .then((res) => {res.json()});
+
+        // console.log(student);
+
+        document.getElementById("fname").value = student.name;
         
 
         const form = document.getElementById("personalDetailsForm");
