@@ -66,8 +66,6 @@ export default class extends AbstractView {
                             <select id="gender" name="gender" class="floating-select"
                             onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
                                 <option value=""></option>
-                                <option value="1">Female</option>
-                                <option value="2">Male</option>
                             </select>
                             <label for="gender" class="floating-label">Gender</label>
                         </div>
@@ -75,9 +73,15 @@ export default class extends AbstractView {
                             <select id="race" name="race" class="floating-select"
                             onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
                                 <option value=""></option>
-                                <option value="1">Other</option>
                             </select>
                             <label for="race" class="floating-label">Race</label>
+                        </div>
+                        <div class="floating-label-content column">
+                            <select class="floating-select" id="license" name="license" 
+                            onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+                                <option value=""></option>
+                            </select>
+                            <label for="license" class="floating-label">Driver's License</label>
                         </div>
                     </div>
                     
@@ -86,7 +90,6 @@ export default class extends AbstractView {
                             <select id="yos" name="yos" class="floating-select"
                             onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
                                 <option value=""></option>
-                                <option value="1">Year 1</option>
                             </select>
                             <label for="yos" class="floating-label">Year of Study</label>
                         </div>
@@ -94,7 +97,6 @@ export default class extends AbstractView {
                             <select id="faculty" name="faculty" class="floating-select"
                             onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
                                 <option value=""></option>
-                                <option value="1">Science</option>
                             </select>
                             <label for="faculty" class="floating-label">Faculty</label>
                         </div>
@@ -102,7 +104,6 @@ export default class extends AbstractView {
                             <select id="department" name="department" class="floating-select"
                             onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
                                 <option value=""></option>
-                                <option value="1">Computer</option>
                             </select>
                             <label for="department" class="floating-label">Department</label>
                         </div>
@@ -133,18 +134,78 @@ export default class extends AbstractView {
 
     async afterRender() {
 
-        const sample = await fetch('http://127.0.0.1:5500/backend/data/data.json');
-        console.log(sample);
+        /* fetch data from API endpoint and populate the dropdowns*/
 
-        const student = await sample.json();
-        console.log(student.name);
+        //Populate Gender dropdown
+        const genderRes = await fetch('https://localhost:7013/api/Lookup/Genders');
+        const gender = await genderRes.json();
+
+        const genderSelect = document.querySelector("#gender");
+        gender.forEach(g => {
+            const option = document.createElement("option");
+            option.value = g.id;
+            option.textContent = g.name;
+            genderSelect.appendChild(option);
+        });
+
+        //Populate Race dropdown
+        const raceRes = await fetch('https://localhost:7013/api/Lookup/Races');
+        const race = await raceRes.json();
+
+        const raceSelect = document.querySelector("#race");
+        race.forEach(r => {
+            const option = document.createElement("option");
+            option.value = r.id;
+            option.textContent = r.name;
+            raceSelect.appendChild(option);
+        });
+
+        //Populate License dropdown
+        const licenseRes = await fetch('https://localhost:7013/api/Lookup/DriversLicense');
+        const license = await licenseRes.json();
+
+        const licenseSelect = document.querySelector("#license");
+        license.forEach(l => {
+            const option = document.createElement("option");
+            option.value = l.id;
+            option.textContent = l.type;
+            licenseSelect.appendChild(option);
+        });
+
+        //Populate YOS dropdown
+        const yosRes = await fetch('https://localhost:7013/api/Lookup/YearOfStudy');
+        const YOS = await yosRes.json();
+
+        const yosSelect = document.querySelector("#yos");
+        YOS.forEach(y => {
+            const option = document.createElement("option");
+            option.value = y.id;
+            option.textContent = y.name;
+            yosSelect.appendChild(option);
+        });
+
+        // Populate Faculty and Department
+        const departmentRes = await fetch('https://localhost:7013/api/Lookup/Departments');
+        const department = await departmentRes.json();
+
+        const depSelect = document.querySelector("#department");
         
-        // const student = fetch('http://127.0.0.1:5500/backend/data/data.json')
-        // .then((res) => {res.json()});
+        department.forEach(course => {
+            const option = document.createElement("option");
+            option.value = course.id; // Set the value to the ID, you can use a different property if needed.
+            option.textContent = course.name; // Display the course name in the dropdown.
+            depSelect.appendChild(option);
+        });
 
-        // console.log(student);
+        const res_1 = await fetch('https://localhost:7013/api/CV/Get Student profile?StudentId=2d058062-0f32-4e62-abfc-3c05eaf60a7e');
+        const student = await res_1.json();
+       
 
-        document.getElementById("fname").value = student.name;
+        document.getElementById("fname").value = student.user.firstName;
+        document.getElementById("lname").value = student.user.lastName;
+        document.getElementById("email").value = student.user.email;
+        
+
         
 
         const form = document.getElementById("personalDetailsForm");
@@ -174,11 +235,3 @@ export default class extends AbstractView {
 
 }
 
-{/* <div class="floating-label-content">
-    <select class="floating-select" id="license" name="license" 
-    onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
-        <option value="">Select a driving license</option>
-        <option value="1">Code E</option>
-    </select>
-    <label for="license" class="floating-label">Driving License</label>
-</div> */}

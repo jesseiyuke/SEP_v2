@@ -1,7 +1,42 @@
 {
-  "name": "John Doe",
-  "email": "john.doe@example.com",
-  "age": 30,
-  "address": "123 Main Street, City",
-  "phone": "555-1234-5678"
+  "user": {
+    "userId": "2d058062-0f32-4e62-abfc-3c05eaf60a7e",
+    "firstName": "Tester",
+    "lastName": "one",
+    "email": "student@sep.com"
+  },
+  "address": "123 Fake Street, City, Country",
+  "idNumber": "0001010299081",
+  "driversLicense": {
+    "id": 1,
+    "type": "Code A: Motorcycles"
+  },
+  "careerObjective": "To obtain a challenging position in the IT industry.",
+  "gender": {
+    "id": 1,
+    "name": "Male"
+  },
+  "race": {
+    "id": 2,
+    "name": "White"
+  },
+  "nationality": {
+    "id": 3,
+    "name": "Albanian"
+  },
+  "yearOfStudy": {
+    "id": 1,
+    "name": "1st Year"
+  },
+  "department": {
+    "departmentId": 5,
+    "name": "Wits Business School",
+    "faculty": {
+      "id": 1,
+      "name": "Commerce, Law and Management"
+    }
+  },
+  "skills": "C#, Java, HTML, CSS",
+  "achivements": "Won coding competition 2022",
+  "interests": "Reading, Swimming, Gaming"
 }
