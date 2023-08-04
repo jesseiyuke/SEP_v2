@@ -94,18 +94,18 @@ export default class extends AbstractView {
                             <label for="yos" class="floating-label">Year of Study</label>
                         </div>
                         <div class="floating-label-content column">
-                            <select id="faculty" name="faculty" class="floating-select"
-                            onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
-                                <option value=""></option>
-                            </select>
-                            <label for="faculty" class="floating-label">Faculty</label>
-                        </div>
-                        <div class="floating-label-content column">
                             <select id="department" name="department" class="floating-select"
                             onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
                                 <option value=""></option>
                             </select>
                             <label for="department" class="floating-label">Department</label>
+                        </div>
+                        <div class="floating-label-content column">
+                            <select id="faculty" name="faculty" class="floating-select"
+                            onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+                                <option value=""></option>
+                            </select>
+                            <label for="faculty" class="floating-label">Faculty</label>
                         </div>
                     </div>
                     <div class="floating-label-content">
@@ -184,26 +184,66 @@ export default class extends AbstractView {
             yosSelect.appendChild(option);
         });
 
-        // Populate Faculty and Department
+        // Populate Faculty and Department dropdowns (add cascading dropdown effect)
         const departmentRes = await fetch('https://localhost:7013/api/Lookup/Departments');
         const department = await departmentRes.json();
 
         const depSelect = document.querySelector("#department");
-        
-        department.forEach(course => {
+        const facultySelect = document.querySelector("#faculty")
+
+        const faculties = {};
+
+        department.forEach(d => {
             const option = document.createElement("option");
-            option.value = course.id; // Set the value to the ID, you can use a different property if needed.
-            option.textContent = course.name; // Display the course name in the dropdown.
+            option.value = d.id; // Set the value to the ID, you can use a different property if needed.
+            option.textContent = d.name; // Display the course name in the dropdown.
             depSelect.appendChild(option);
         });
+        
+        // department.forEach(d => {
+        //     // const option = document.createElement("option");
+        //     // option.value = course.id; // Set the value to the ID, you can use a different property if needed.
+        //     // option.textContent = course.name; // Display the course name in the dropdown.
+        //     // depSelect.appendChild(option);
+            
+        //     if (!faculties[d.facultyId])
+        //     {
+        //         const option = document.createElement("option");
+        //         option.value = d.faculty.id;
+        //         option.textContent = d.faculty.name;
+        //         facultySelect.appendChild(option);
+        //         faculties[d.facultyId] = true;
+        //     }
+        // });
 
-        const res_1 = await fetch('https://localhost:7013/api/CV/Get Student profile?StudentId=2d058062-0f32-4e62-abfc-3c05eaf60a7e');
-        const student = await res_1.json();
+        // const updateDepSelect = () => {
+
+
+        //     const selectedFacultyId = parseInt(facultySelect.value);
+
+        //     const departments = department.filter(
+        //         dep => dep.facultyId === selectedFacultyId
+        //     );
+        //     console.log(departments);
+
+        //     departments.forEach(d => {
+        //         const option = document.createElement("option");
+        //         option.value = d.id; // Set the value to the ID, you can use a different property if needed.
+        //         option.textContent = course.name; // Display the course name in the dropdown.
+        //         depSelect.appendChild(option);    
+        //     });
+        // }
+
+        // facultySelect.addEventListener("change", updateDepSelect());
+        // updateDepSelect();
+
+        // const res_1 = await fetch('https://localhost:7013/api/CV/Get Student profile?StudentId=2d058062-0f32-4e62-abfc-3c05eaf60a7e');
+        // const student = await res_1.json();
        
 
-        document.getElementById("fname").value = student.user.firstName;
-        document.getElementById("lname").value = student.user.lastName;
-        document.getElementById("email").value = student.user.email;
+        // document.getElementById("fname").value = student.user.firstName;
+        // document.getElementById("lname").value = student.user.lastName;
+        // document.getElementById("email").value = student.user.email;
         
 
         
