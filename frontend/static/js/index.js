@@ -13,8 +13,6 @@ import DuringInterview from "./views/DuringInterview.js";
 import TellYourself from "./views/TellYourself.js";
 import SelfDescribeWords from "./views/SelfDescribeWords.js";
 
-console.log(student);
-
 const pathToRegex = (path) =>
   new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 
@@ -88,18 +86,18 @@ window.addEventListener("popstate", router);
 
 // Add a click event listener to the anchor element
 anchorElement.addEventListener('click', function(event) {
-    // Prevent the default behavior of the anchor (e.g., navigating to the href URL)
-    event.preventDefault();
+	// Prevent the default behavior of the anchor (e.g., navigating to the href URL)
+	event.preventDefault();
 
  
 
-    // Check if the actual target of the click event is the anchor itself
-    if (event.target === anchorElement) {
-        // The click was on the anchor element, and you can handle the click action here
-        // For example, you can redirect to the link's URL manually:
-        window.location.href = anchorElement.getAttribute('href');
-        navigateTo(window.location.href);
-    }
+	// Check if the actual target of the click event is the anchor itself
+	if (event.target === anchorElement) {
+		// The click was on the anchor element, and you can handle the click action here
+		// For example, you can redirect to the link's URL manually:
+		window.location.href = anchorElement.getAttribute('href');
+		navigateTo(window.location.href);
+	}
 }); */
 
 // document.addEventListener("DOMContentLoaded", () => {
@@ -148,102 +146,118 @@ sidebarBtn.addEventListener("click", () => {
   sidebar.classList.toggle("close");
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  let button = document.getElementById("closeformbbbtn");
-  var form = document.getElementById("education");
-  let addneeeducationsign = document.getElementById("add__sign");
-  let addneeeducationword = document.getElementById("add__word");
+// // listening for the education page to load
+// document.addEventListener("DOMContentLoaded", () => {
+//   let button = document.getElementById("closeformbbbtn");
+//   var form = document.getElementById("education");
 
-  var tbodyRef = document
-    .getElementById("educationTable")
-    .getElementsByTagName("tbody")[0];
-  const educationList = `
-  { "qualifications": [
-    {
-        "id": 1,
-        "institution": "XYZ University",
-        "startDate": "2020-09-01T00:00:00",
-        "endDate": "2023-06-30T00:00:00",
-        "qualificationTitle": "Bachelor of Computer Science",
-        "subjects": "Programming, Algorithms",
-        "majors": "Software Engineering",
-        "subMajors": "Data Science",
-        "research": "Machine Learning"
-    },
-    {
-        "id": 2,
-        "institution": "University wits",
-        "startDate": "2020-09-01T00:00:00",
-        "endDate": "2023-06-30T00:00:00",
-        "qualificationTitle": "Programming, Algorithms",
-        "subjects": "Programming, Algorithms",
-        "majors": "Software Engineering",
-        "subMajors": "Data Science",
-        "research": "Machine Learning"
-        }
-    ]
-  }
- 
-    `;
+//   function addEducationTable(edu) {
+//     var tbodyRef = document
+//       .getElementById("educationTable")
+//       .getElementsByTagName("tbody")[0];
+//     for (var i = 0; i < edu.student.qualifications.length; i++) {
+//       var education = edu.student.qualifications[i];
 
-  const edu = JSON.parse(educationList);
-  for (var i = 0; i < edu.qualifications.length; i++) {
-    var education = edu.qualifications[i];
+//       var newRow = tbodyRef.insertRow();
+//       var newCell0 = newRow.insertCell();
+//       var newCell1 = newRow.insertCell();
+//       var newCell2 = newRow.insertCell();
+//       var newCell3 = newRow.insertCell();
+//       var newCell4 = newRow.insertCell();
 
-    var newRow = tbodyRef.insertRow();
-    var newCell0 = newRow.insertCell();
-    var newCell1 = newRow.insertCell();
-    var newCell2 = newRow.insertCell();
-    var newCell3 = newRow.insertCell();
-    var newCell4 = newRow.insertCell();
+//       newCell0.innerHTML = education.institution;
+//       newCell1.innerHTML = education.startDate.split("T")[0];
+//       newCell2.innerHTML = education.endDate.split("T")[0];
+//       newCell3.innerHTML = education.qualificationTitle;
+//       newCell4.innerHTML =
+//         "<a id=" + education.id + ' href="#" open-edu>View details</a>';
+//     }
+//   }
 
-    newCell0.innerHTML = education.institution;
-    newCell1.innerHTML = education.startDate.split("T")[0];
-    newCell2.innerHTML = education.endDate.split("T")[0];
-    newCell3.innerHTML = education.qualificationTitle;
-    newCell4.innerHTML =
-      "<a id=" + education.id + ' href="#" open-edu>View details</a>';
-  }
+//   function removeFormValue() {
+//     var institutionname = document.getElementById("institutionName");
+//     var qualificationname = document.getElementById("qualificationName");
+//     var startdate = document.getElementById("startDate");
+//     var endtdate = document.getElementById("endtDate");
+//     var subjects = document.getElementById("subjects");
+//     var majors = document.getElementById("majors");
+//     var submajors = document.getElementById("subMajors");
+//     var research = document.getElementById("research");
 
-  button.addEventListener("click", () => {
-    form.style.display = "none";
-    console.log("none working");
-  });
+//     institutionname.value = "";
+//     qualificationname.value = "";
+//     startdate.value = "";
+//     endtdate.value = "";
+//     subjects.value = "";
+//     majors.value = "";
+//     submajors.value = "";
+//     research.value = "";
+//   }
 
-  addneeeducationsign.addEventListener("click", (e) => {
-    form.style.display = "block";
-    console.log("plus sign working working");
-  });
+//   // fetching json from local server
+//   async function getStudent(myCallback) {
+//     const response = await fetch(
+//       "http://127.0.0.1:5500/data/userdata.json"
+//     ).then((res) => res.json());
+//     myCallback(response);
 
-  addneeeducationword.addEventListener("click", (e) => {
-    form.style.display = "block";
-    console.log("add word working working");
-  });
+//     document.body.addEventListener("click", (e) => {
+//       if (e.target.matches("[open-edu]")) {
+//         e.preventDefault();
 
-  document.body.addEventListener("click", (e) => {
-    if (
-      e.target.matches("[open-edu]") ||
-      e.target.matches("[create-education]")
-    ) {
-      //console.log("edu id :", e.target.id);
+//         const selectedEducation = response.student.qualifications.filter(
+//           (qual) => qual.id == e.target.id
+//         );
+//         var institutionname = document.getElementById("institutionName");
+//         var qualificationname = document.getElementById("qualificationName");
+//         var startdate = document.getElementById("startDate");
+//         var endtdate = document.getElementById("endtDate");
+//         var subjects = document.getElementById("subjects");
+//         var majors = document.getElementById("majors");
+//         var submajors = document.getElementById("subMajors");
+//         var research = document.getElementById("research");
 
-      e.preventDefault();
+//         institutionname.value = selectedEducation[0].institution;
+//         qualificationname.value = selectedEducation[0].qualificationTitle;
+//         startdate.value = selectedEducation[0].startDate.split('T')[0];
+//         endtdate.value = selectedEducation[0].endDate.split('T')[0];
+//         subjects.value = selectedEducation[0].subjects;
+//         majors.value = selectedEducation[0].majors;
+//         submajors.value = selectedEducation[0].subMajors;
+//         research.value = selectedEducation[0].research;
 
-      const selectedEducation = edu.qualifications.filter(
-        (qual) => qual.id == e.target.id
-      );
-      var institutionname = document.getElementById("institutionName");
-      institutionname.value = selectedEducation[0].institution;
+//         form.style.display = "block";
+//       }
+//     });
+//   }
 
-      // console.log(selectedEducation[0].institution);
+//   getStudent(addEducationTable);
 
-      form.style.display = "block";
-      console.log("block working");
-    }
-  });
+//   button.addEventListener("click", () => {
+//     form.style.display = "none";
+//   });
 
-  // openbtn.addEventListener("click", () => {
-  //         form.style.display = "block";
-  //         console.log("block working");
-  // });
-});
+//   // addneeeducationsign.addEventListener("click", (e) => {
+//   //   form.style.display = "block";
+//   //   console.log("plus sign working working");
+//   // });
+
+//   // addneeeducationword.addEventListener("click", (e) => {
+//   //   form.style.display = "block";
+//   //   console.log("add word working working");
+//   // });
+
+//   document.body.addEventListener("click", (e) => {
+//     if (e.target.matches("[create-education]")) {
+//       //   console.log("edu id :", e.target.id);
+//       e.preventDefault();
+//       removeFormValue();
+//       form.style.display = "block";
+//     }
+//   });
+
+//   // openbtn.addEventListener("click", () => {
+//   //         form.style.display = "block";
+//   //         console.log("block working");
+//   // });
+// });

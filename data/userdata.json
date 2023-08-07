@@ -34,6 +34,17 @@
                     "majors": "Software Engineering",
                     "subMajors": "Data Science",
                     "research": "Machine Learning"
+                },
+                {
+                    "id": 2,
+                    "institution": "Wits University",
+                    "startDate": "2020-09-01T00:00:00",
+                    "endDate": "2023-06-30T00:00:00",
+                    "qualificationTitle": "Bachelor of Information Systems",
+                    "subjects": "Programming, Algorithms, Business logic",
+                    "majors": "Software Engineering",
+                    "subMajors": "Data Science",
+                    "research": "AI game agent"
                 }
             ],
         "referees": [
