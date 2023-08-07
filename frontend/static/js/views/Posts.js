@@ -1,106 +1,26 @@
-// Posts.js (updated)
-
 import AbstractView from "./AbstractView.js";
 
-const jobPosts = [
-  {
-    jobTitle: "Software Developer Intern 1",
-    department: "Wits Innovation Centre",
-    location: "Wits Plus Building, Third Floor",
-    jobType: "Full-time",
-    startDate: "19/07/23",
-    endDate: "22/02/24",
-    weekHour: "6-8 Hours",
-    hourlyRate: 180.27,
-    jobDescription: "Develop high-quality software :)",
-    minimumRequirements: "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
-    keyResponsibilities: "Write code|Give presentations|Join meetings",
-    closingDate: "26/09/23",
-    contactPerson: "John Doe",
-    email: "JohnDoe@wits.ac.za",
-  },
-  {
-    jobTitle: "Software Developer Intern 2",
-    location: "Wits Plus Building, Third Floor",
-    department: "Wits Innovation Centre",
-    jobType: "Part-time",
-    startDate: "19/07/23",
-    endDate: "22/02/24",
-    weekHour: "10-12 Hours",
-    hourlyRate: 150.50,
-    jobDescription: "Develop cutting-edge software solutions.",
-    minimumRequirements: "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
-    keyResponsibilities: "Design software architecture|Collaborate with teams|Debug and test code",
-    closingDate: "30/09/23",
-    contactPerson: "Jane Smith",
-    email: "JaneSmith@wits.ac.za",
-  },
-  {
-    jobTitle: "Software Developer Intern 3",
-    location: "Wits Plus Building, Third Floor",
-    department: "Wits Innovation Centre",
-    jobType: "Full-time",
-    startDate: "19/07/23",
-    endDate: "22/02/24",
-    weekHour: "6-8 Hours",
-    hourlyRate: 180.27,
-    jobDescription: "Create innovative software applications.",
-    minimumRequirements: "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
-    keyResponsibilities: "Implement new features|Conduct code reviews|Assist in testing",
-    closingDate: "28/09/23",
-    contactPerson: "Michael Johnson",
-    email: "MichaelJohnson@wits.ac.za",
-  },
-  {
-    jobTitle: "Software Developer Intern 4",
-    location: "Wits Plus Building, Third Floor",
-    department: "Wits Innovation Centre",
-    jobType: "Full-time",
-    startDate: "19/07/23",
-    endDate: "22/02/24",
-    weekHour: "6-8 Hours",
-    hourlyRate: 180.27,
-    jobDescription: "Create innovative software applications.",
-    minimumRequirements: "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
-    keyResponsibilities: "Implement new features|Conduct code reviews|Assist in testing",
-    closingDate: "28/09/23",
-    contactPerson: "Michael Johnson",
-    email: "MichaelJohnson@wits.ac.za",
-  },
-  {
-    jobTitle: "Software Developer Intern 5",
-    location: "Wits Plus Building, Third Floor",
-    department: "Wits Innovation Centre",
-    jobType: "Full-time",
-    startDate: "19/07/23",
-    endDate: "22/02/24",
-    weekHour: "6-8 Hours",
-    hourlyRate: 180.27,
-    jobDescription: "Create innovative software applications.",
-    minimumRequirements: "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
-    keyResponsibilities: "Implement new features|Conduct code reviews|Assist in testing",
-    closingDate: "28/09/23",
-    contactPerson: "Michael Johnson",
-    email: "MichaelJohnson@wits.ac.za",
-  },
-  {
-    jobTitle: "Software Developer Intern 6",
-    location: "Wits Plus Building, Third Floor",
-    department: "Wits Innovation Centre",
-    jobType: "Full-time",
-    startDate: "19/07/23",
-    endDate: "22/02/24",
-    weekHour: "6-8 Hours",
-    hourlyRate: 180.27,
-    jobDescription: "Create innovative software applications.",
-    minimumRequirements: "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
-    keyResponsibilities: "Implement new features|Conduct code reviews|Assist in testing",
-    closingDate: "28/09/23",
-    contactPerson: "Michael Johnson",
-    email: "MichaelJohnson@wits.ac.za",
-  },
-  // Add more sample job posts here if needed
-];
+async function getJobPostsFromAPI() {
+  try {
+    const response = await fetch("https://localhost:7013/api/JobPosts", {
+      headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImJiYjBiMGZkLTk4ZDAtNDFkNy1hZmIyLTdjYWFmZTFkMzVlYiIsImp0aSI6ImYyYmQyZmRiLWNmZWUtNDY5MS05NzRjLTEyNzk2ZWRjYmQ5NiIsImV4cCI6MTY5MTQxNzA2NCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAxMyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMTMifQ.oScblb46P77txDtcB21ph98ITBwRaFISikC4VBeZoKA'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch job posts.");
+    }
+
+    const jobPosts = await response.json();
+    console.log(JSON.stringify(jobPosts));
+
+    return jobPosts;
+  } catch (error) {
+    console.error("Error fetching job posts:", error);
+    return [];
+  }
+}
 
 export default class extends AbstractView {
   constructor(params) {
@@ -109,6 +29,7 @@ export default class extends AbstractView {
   }
 
   async getHtml() {
+    const jobPosts = await getJobPostsFromAPI();
     const jobPostsHTML = jobPosts.map((post, index) => this.getJobCardHtml(post, index)).join("");
 
     // Wrap job cards inside a scrollable container
@@ -174,6 +95,7 @@ export default class extends AbstractView {
 
   // Update event listener to toggle job details visibility
   async addEventListener() {
+    const jobPosts = await getJobPostsFromAPI(); // Fetch job posts again here, if needed
     const jobCards = document.querySelectorAll(".job-card");
     const jobDetailsSection = document.querySelector(".job-details");
 
