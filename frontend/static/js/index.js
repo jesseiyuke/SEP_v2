@@ -410,7 +410,7 @@ async function fetchStudentProfile()
 {
     // disclaimer: will have to use id of current logged in user
     // for now, using the seeded data for testing purposes
-    const studentRes = await fetch("https://localhost:7013/api/Student/Get Student CV?StudentId=538fe120-fb33-498f-ac21-9108fd33da5f");
+    const studentRes = await fetch("https://localhost:7013/api/Student/Get Student profile?StudentId=538fe120-fb33-498f-ac21-9108fd33da5f");
     const student = await studentRes.json();
     console.log(student);
     
