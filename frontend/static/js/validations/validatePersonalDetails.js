@@ -75,20 +75,20 @@ export function validateForm() {
         isValid = false;
     }
 
-    const celllInput = document.getElementById('cell').value;
-    const cellError = document.getElementById('cellValidation');
-    if (celllInput.trim() === "" || celllInput === null)
-    {
-        cellError.textContent = "Please enter a cellphone number.";
-        isValid = false;
-    } else {
-        if(!isValidSANumber(celllInput)) {
-            cellError.textContent = "Please enter a valid South African number.";
-            isValid = false;
-        } else {
-            cellError.textContent = "";
-        }
-    }
+    // const celllInput = document.getElementById('cell').value;
+    // const cellError = document.getElementById('cellValidation');
+    // if (celllInput.trim() === "" || celllInput === null)
+    // {
+    //     cellError.textContent = "Please enter a cellphone number.";
+    //     isValid = false;
+    // } else {
+    //     if(!isValidSANumber(celllInput)) {
+    //         cellError.textContent = "Please enter a valid South African number.";
+    //         isValid = false;
+    //     } else {
+    //         cellError.textContent = "";
+    //     }
+    // }
 
     const emailInput = document.getElementById('email').value;
     const emailError = document.getElementById('emailValidation');
@@ -136,9 +136,53 @@ export function validateForm() {
         }
     }
 
-    // const lastName = document.getElementById('lname').value;
-    // const cellPhone = document.getElementById('cell').value;
-    // const email = document.getElementById('email').value;
+    const genderValue = document.getElementById('gender').value;
+    const genderError = document.getElementById('genderValidation');
+    if (genderValue === "" || genderValue === null)
+    {
+        genderError.textContent = "Please select a gender.";
+        isValid = false;
+    }
+
+    const raceValue = document.getElementById('race').value;
+    const raceError = document.getElementById('raceValidation');
+    if (raceValue === "" || raceValue === null)
+    {
+        raceError.textContent = "Please select a race.";
+        isValid = false;
+    }
+
+    const licenseValue = document.getElementById('license').value;
+    const licenseError = document.getElementById('licenseValidation');
+    if (licenseValue === "" || licenseValue === null)
+    {
+        licenseError.textContent = "Please select a driver's license.";
+        isValid = false;
+    }
+
+    const yosValue = document.getElementById('yos').value;
+    const yosError = document.getElementById('yosValidation');
+    if (yosValue === "" || yosValue === null)
+    {
+        yosError.textContent = "Please select a year of study.";
+        isValid = false;
+    }
+
+    const facultyValue = document.getElementById('faculty').value;
+    const facultyError = document.getElementById('facultyValidation');
+    if (facultyValue === "" || facultyValue === null)
+    {
+        facultyError.textContent = "Please select a faculty.";
+        isValid = false;
+    }
+
+    const departmentValue = document.getElementById('department').value;
+    const departmentError = document.getElementById('departmentValidation');
+    if (departmentValue === "" || departmentValue === null)
+    {
+        departmentError.textContent = "Please select a department.";
+        isValid = false;
+    }
 
     return isValid;
 }
