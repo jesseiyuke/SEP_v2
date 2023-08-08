@@ -15,8 +15,6 @@ import SelfDescribeWords from "./views/SelfDescribeWords.js";
 
 import { validateForm } from "./validations/validatePersonalDetails.js";
 
-import { validateForm } from "./validations/validatePersonalDetails.js";
-
 const pathToRegex = (path) =>
   new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 
@@ -406,7 +404,7 @@ async function fetchStudentProfile()
 {
     // disclaimer: will have to use id of current logged in user
     // for now, using the seeded data for testing purposes
-    const studentRes = await fetch("https://localhost:7013/api/CV/Get Student profile?StudentId=851b1523-dc11-4d55-8878-2afc78a94d3c");
+    const studentRes = await fetch("https://localhost:7013/api/Student/Get Student CV?StudentId=538fe120-fb33-498f-ac21-9108fd33da5f");
     const student = await studentRes.json();
     console.log(student);
 
