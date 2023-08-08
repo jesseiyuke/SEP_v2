@@ -79,8 +79,9 @@ const router = async () => {
 
     if (match.route.path === "/PersonalDetails") {
         await fetchStudentProfile();
-        validateForms();
-        await submitForm();
+        // validateForms();
+        // await submitForm();
+        // await populateDropdowns();
     }
     
 };
@@ -131,8 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
   router();
 });
 
-//|| || e.target.matches('#myLink i')
-//e.target.matches("[data-link]")
 
 //Arrows
 let arrow = document.querySelectorAll(".arrow");
@@ -269,12 +268,23 @@ sidebarBtn.addEventListener("click", () => {
 // });
 
 
+/* fetch data from API endpoint */
+async function fetchData()
+{
+    const lookupRes = await fetch('https://localhost:7013/api/Lookup/LookupData');
+    const lookups = await lookupRes.json();
+
+    return lookups;
+}
+
 /* fetch data from API endpoint and populate the dropdowns*/
 async function populateDropdowns() {
 
-    //Populate Gender dropdown
-    const genderRes = await fetch('https://localhost:7013/api/Lookup/Genders');
-    const gender = await genderRes.json();
+    // const lookupRes = await fetch('https://localhost:7013/api/Lookup/LookupData');
+    const lookups = await fetchData();
+
+    // //Populate Gender dropdown
+    const gender = lookups.genders;
 
     const genderSelect = document.querySelector("#gender");
     gender.forEach(g => {
@@ -284,9 +294,8 @@ async function populateDropdowns() {
         genderSelect.appendChild(option);
     });
 
-    //Populate Race dropdown
-    const raceRes = await fetch('https://localhost:7013/api/Lookup/Races');
-    const race = await raceRes.json();
+    // //Populate Race dropdown
+    const race = lookups.races;
 
     const raceSelect = document.querySelector("#race");
     race.forEach(r => {
@@ -296,9 +305,8 @@ async function populateDropdowns() {
         raceSelect.appendChild(option);
     });
 
-    //Populate License dropdown
-    const licenseRes = await fetch('https://localhost:7013/api/Lookup/DriversLicense');
-    const license = await licenseRes.json();
+    // //Populate License dropdown
+    const license = lookups.driversLicenses;
 
     const licenseSelect = document.querySelector("#license");
     license.forEach(l => {
@@ -308,9 +316,8 @@ async function populateDropdowns() {
         licenseSelect.appendChild(option);
     });
 
-    //Populate YOS dropdown
-    const yosRes = await fetch('https://localhost:7013/api/Lookup/YearOfStudy');
-    const YOS = await yosRes.json();
+    // //Populate YOS dropdown
+    const YOS = lookups.yearsOfStudy;
 
     const yosSelect = document.querySelector("#yos");
     YOS.forEach(y => {
@@ -320,9 +327,8 @@ async function populateDropdowns() {
         yosSelect.appendChild(option);
     });
 
-    // Populate Faculty and Department dropdowns (add cascading dropdown effect)
-    const departmentRes = await fetch('https://localhost:7013/api/Lookup/Departments');
-    const department = await departmentRes.json();
+    // // Populate Faculty and Department dropdowns (add cascading dropdown effect)
+    const department = lookups.departments
 
     const depSelect = document.querySelector("#department");
     const facultySelect = document.querySelector("#faculty");
@@ -350,11 +356,11 @@ async function populateDropdowns() {
 };
 
 // Populate departments based on the selected faculty
-async function populateDepartments(facultyId, depSelect)
+async function populateDepartments(facultyId, depSelect, department)
 {
     // Populate departements dropdown by faculty
-    const departmentRes = await fetch('https://localhost:7013/api/Lookup/Departments');
-    const department = await departmentRes.json();
+    // const departmentRes = await fetch('https://localhost:7013/api/Lookup/Departments');
+    // const department = await departmentRes.json();
 
     // const depSelect = document.querySelector("#department");
 
@@ -407,20 +413,26 @@ async function fetchStudentProfile()
     const studentRes = await fetch("https://localhost:7013/api/Student/Get Student CV?StudentId=538fe120-fb33-498f-ac21-9108fd33da5f");
     const student = await studentRes.json();
     console.log(student);
-
-    const facultyId = student.department.faculty.id;
-    const departmentId = student.department.id
     
     await populateDropdowns();
+    const data = await fetchData();
 
-    await populateDepartments(facultyId, document.querySelector("#department"));
+    const departmentId = student.departmentId;
+    console.log(departmentId);
+    const departments = data.departments;
+    const department = departments.find(d => d.id === departmentId);
+    console.log(department);
+
+    const facultyId = department.facultyId;
+
+    await populateDepartments(facultyId, document.querySelector("#department"), departments);
 
     document.getElementById("fname").value = student.user.firstName;
     document.getElementById("lname").value = student.user.lastName;
     // document.getElementById("cell");
     document.getElementById("email").value = student.user.email;
 
-    if (student.nationality.name === "South African"){
+    if (student.nationalityId == 166){
         document.getElementById("citizenYes").checked = true;
         document.getElementById("citizenNo").checked = false;
     } else {
@@ -429,10 +441,10 @@ async function fetchStudentProfile()
     }
     
     document.getElementById("idNumber").value = student.idNumber;
-    document.getElementById("gender").value = student.gender.id;
-    document.getElementById("race").value = student.race.id;
-    document.getElementById("license").value = student.driversLicense.id;
-    document.getElementById("yos").value = student.yearOfStudy.id;
+    document.getElementById("gender").value = student.genderId;
+    document.getElementById("race").value = student.raceId;
+    document.getElementById("license").value = student.driversLicenseId;
+    document.getElementById("yos").value = student.yearOfStudyId;
 
     document.getElementById("department").value = departmentId;
     document.getElementById("faculty").value = facultyId;
