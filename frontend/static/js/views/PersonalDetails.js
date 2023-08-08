@@ -1,12 +1,11 @@
 import AbstractView from "./AbstractView.js";
 import { validateForm } from "../validations/validatePersonalDetails.js";
 
-
-
 export default class extends AbstractView {
     constructor(params) {
         super(params);
         this.setTitle("Personal Details");
+        const name = "PersonalDetails";
     }
 
     async getHtml() {
@@ -21,7 +20,7 @@ export default class extends AbstractView {
             </nav>
 
             <br>
-            <div class="center-container">
+            <div class="details-container">
                 <form id="personalDetailsForm">
                     <div class="row">
                         <div class="floating-label-content column">
@@ -57,7 +56,7 @@ export default class extends AbstractView {
                         </div>
                         <div class="floating-label-content column">
                             <input type="text" class="floating-input" id="idNumber" name="idNumber" placeholder=" ">
-                            <label for="idNumber" class="floating-label">ID/Passport Number (optional)</label>
+                            <label for="idNumber" class="floating-label">ID/Passport Number</label>
                             <span id="idNumberValidation" class="validation-error"></span>
                         </div>
                     </div>
@@ -68,6 +67,7 @@ export default class extends AbstractView {
                                 <option value=""></option>
                             </select>
                             <label for="gender" class="floating-label">Gender</label>
+                            <span id="genderValidation" class="validation-error"></span>
                         </div>
                         <div class="floating-label-content column">
                             <select id="race" name="race" class="floating-select"
@@ -75,6 +75,7 @@ export default class extends AbstractView {
                                 <option value=""></option>
                             </select>
                             <label for="race" class="floating-label">Race</label>
+                            <span id="raceValidation" class="validation-error"></span>
                         </div>
                         <div class="floating-label-content column">
                             <select class="floating-select" id="license" name="license" 
@@ -82,6 +83,7 @@ export default class extends AbstractView {
                                 <option value=""></option>
                             </select>
                             <label for="license" class="floating-label">Driver's License</label>
+                            <span id="licenseValidation" class="validation-error"></span>
                         </div>
                     </div>
                     
@@ -92,13 +94,7 @@ export default class extends AbstractView {
                                 <option value=""></option>
                             </select>
                             <label for="yos" class="floating-label">Year of Study</label>
-                        </div>
-                        <div class="floating-label-content column">
-                            <select id="department" name="department" class="floating-select"
-                            onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
-                                <option value=""></option>
-                            </select>
-                            <label for="department" class="floating-label">Department</label>
+                            <span id="yosValidation" class="validation-error"></span>
                         </div>
                         <div class="floating-label-content column">
                             <select id="faculty" name="faculty" class="floating-select"
@@ -106,170 +102,40 @@ export default class extends AbstractView {
                                 <option value=""></option>
                             </select>
                             <label for="faculty" class="floating-label">Faculty</label>
+                            <span id="facultyValidation" class="validation-error"></span>
+                        </div>
+                        <div class="floating-label-content column">
+                            <select id="department" name="department" class="floating-select"
+                            onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+                                <option value=""></option>
+                            </select>
+                            <label for="department" class="floating-label">Department</label>
+                            <span id="departmentValidation" class="validation-error"></span>
                         </div>
                     </div>
                     <div class="floating-label-content">
-                        <label for="objective" class="floating-label">Career Objective:</label>
+                        <label for="objective">Career Objective</label>
                         <textarea id="objective" name="objective" class="floating-input" placeholder=" "></textarea>
                         <span id="objectiveValidation" class="validation-error"></span>
                     </div>
                     <div class="floating-label-content">
+                        <label for="skills">Skills (please enter every skill on a new line)</label>
                         <textarea id="skills" name="skills" class="floating-input"></textarea>
-                        <label for="skills" class="floating-label">Skills (please enter every skill on a new line):</label>
+                        <span id="skillsValidation" class="validation-error"></span>
                     </div>
                     <div class="floating-label-content">
+                        <label for="achievements">Achievements (please enter every achievement on a new line)</label>
                         <textarea id="achievements" name="achievements" class="floating-input"></textarea>
-                        <label for="achievements" class="floating-label">Achievements:</label>
-                        <br/>
+                        <span id="achievementsValidation" class="validation-error"></span>
                     </div>
                     <div>
-                        <button>Save</button>
+                        <button id="submitButton">Save</button>
                         <button>Discard</button>
                     </div>
                 </form>
             </div>
            
         `;
-    }
-
-    async afterRender() {
-
-        /* fetch data from API endpoint and populate the dropdowns*/
-
-        //Populate Gender dropdown
-        const genderRes = await fetch('https://localhost:7013/api/Lookup/Genders');
-        const gender = await genderRes.json();
-
-        const genderSelect = document.querySelector("#gender");
-        gender.forEach(g => {
-            const option = document.createElement("option");
-            option.value = g.id;
-            option.textContent = g.name;
-            genderSelect.appendChild(option);
-        });
-
-        //Populate Race dropdown
-        const raceRes = await fetch('https://localhost:7013/api/Lookup/Races');
-        const race = await raceRes.json();
-
-        const raceSelect = document.querySelector("#race");
-        race.forEach(r => {
-            const option = document.createElement("option");
-            option.value = r.id;
-            option.textContent = r.name;
-            raceSelect.appendChild(option);
-        });
-
-        //Populate License dropdown
-        const licenseRes = await fetch('https://localhost:7013/api/Lookup/DriversLicense');
-        const license = await licenseRes.json();
-
-        const licenseSelect = document.querySelector("#license");
-        license.forEach(l => {
-            const option = document.createElement("option");
-            option.value = l.id;
-            option.textContent = l.type;
-            licenseSelect.appendChild(option);
-        });
-
-        //Populate YOS dropdown
-        const yosRes = await fetch('https://localhost:7013/api/Lookup/YearOfStudy');
-        const YOS = await yosRes.json();
-
-        const yosSelect = document.querySelector("#yos");
-        YOS.forEach(y => {
-            const option = document.createElement("option");
-            option.value = y.id;
-            option.textContent = y.name;
-            yosSelect.appendChild(option);
-        });
-
-        // Populate Faculty and Department dropdowns (add cascading dropdown effect)
-        const departmentRes = await fetch('https://localhost:7013/api/Lookup/Departments');
-        const department = await departmentRes.json();
-
-        const depSelect = document.querySelector("#department");
-        const facultySelect = document.querySelector("#faculty")
-
-        const faculties = {};
-
-        department.forEach(d => {
-            const option = document.createElement("option");
-            option.value = d.id; // Set the value to the ID, you can use a different property if needed.
-            option.textContent = d.name; // Display the course name in the dropdown.
-            depSelect.appendChild(option);
-        });
-        
-        // department.forEach(d => {
-        //     // const option = document.createElement("option");
-        //     // option.value = course.id; // Set the value to the ID, you can use a different property if needed.
-        //     // option.textContent = course.name; // Display the course name in the dropdown.
-        //     // depSelect.appendChild(option);
-            
-        //     if (!faculties[d.facultyId])
-        //     {
-        //         const option = document.createElement("option");
-        //         option.value = d.faculty.id;
-        //         option.textContent = d.faculty.name;
-        //         facultySelect.appendChild(option);
-        //         faculties[d.facultyId] = true;
-        //     }
-        // });
-
-        // const updateDepSelect = () => {
-
-
-        //     const selectedFacultyId = parseInt(facultySelect.value);
-
-        //     const departments = department.filter(
-        //         dep => dep.facultyId === selectedFacultyId
-        //     );
-        //     console.log(departments);
-
-        //     departments.forEach(d => {
-        //         const option = document.createElement("option");
-        //         option.value = d.id; // Set the value to the ID, you can use a different property if needed.
-        //         option.textContent = course.name; // Display the course name in the dropdown.
-        //         depSelect.appendChild(option);    
-        //     });
-        // }
-
-        // facultySelect.addEventListener("change", updateDepSelect());
-        // updateDepSelect();
-
-        // const res_1 = await fetch('https://localhost:7013/api/CV/Get Student profile?StudentId=2d058062-0f32-4e62-abfc-3c05eaf60a7e');
-        // const student = await res_1.json();
-       
-
-        // document.getElementById("fname").value = student.user.firstName;
-        // document.getElementById("lname").value = student.user.lastName;
-        // document.getElementById("email").value = student.user.email;
-        
-
-        
-
-        const form = document.getElementById("personalDetailsForm");
-
-        form.addEventListener("submit", (e) => {
-            if (!validateForm()){
-                e.preventDefault();
-            }
-        })
-
-        var textareas = document.querySelectorAll("textarea");
-            
-        function adjustTextareaHeight(textarea) {
-            textarea.style.height = "auto";
-            textarea.style.height = (textarea.scrollHeight) + "px";
-        }
-        
-        textareas.forEach(function(textarea) {
-            textarea.setAttribute("style", "height:" + (textarea.scrollHeight) + "px;overflow-y:hidden;");
-            textarea.addEventListener("input", function() {
-                adjustTextareaHeight(this);
-            });
-        });
-
     }
 
 
