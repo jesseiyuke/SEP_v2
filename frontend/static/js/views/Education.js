@@ -40,6 +40,11 @@ export default class extends AbstractView {
                         
                     </tbody>
                 </table>
+                <div class="education__card">
+                    <div>
+                        <h4>Bsc - Computer Science </h4> 
+                    </div>
+                </div>
 
                 <a href="#" class="add__education" create-education> Add education </a>
 

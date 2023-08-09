@@ -697,9 +697,9 @@ legend {
 
 .education,.exprience,.referee{
   background-color: rgb(240, 250, 250);
-  border: 5px solid red;
+  /* border: 5px solid red; */
   margin-top: 8rem;
-  width: 60%;
+  width: 70%;
   height: 70%;
   position: absolute;
   top: 0;
@@ -742,13 +742,100 @@ legend {
   width: 20%;
 }
 
-.education .education__info .form__mainitems{
+.education .education__info .form__mainitems, .exprience .exprience__info .form__mainitems, .referee .referee__info .form__mainitems{
   display: flex;
 
 }
-.education .education__info .form__mainitems div{
+.education .education__info .form__mainitems div,.exprience .exprience__info .form__mainitems div,.referee .referee__info .form__mainitems div{
   display: flex;
   flex-direction: column;
   flex-basis: 45%;
   margin: 0 5% 3% 5%;
+}
+.education__card{
+  display: none;
+}
+
+@media screen and (max-width: 670px){
+  .education__table{
+    display: none;
+  }
+  .education__card{
+    display: block;
+  }
+  .education,.exprience,.referee{
+    background-color: rgb(240, 250, 250);
+    /* border: 5px solid red; */
+    margin-top: 8rem;
+    width: 100%;
+    height: 70%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    transition: .5s;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+  .education .form__close #closeformbbbtn,.exprience .form__close #closeformbbbtn,.referee .form__close #closeformbbbtn{
+    /* border: 5px solid yellow ; */
+    width: 10%;
+    position: relative;
+    float: right;
+    margin: 0;
+    border-radius: 0;
+    /* margin-right: 1rem; */
+    background-color: red;
+  }
+
+  .education .education__info .form__mainitems, .exprience .exprience__info .form__mainitems, .referee .referee__info .form__mainitems{
+    display:grid;
+    flex-direction: row;
+  
+  }
+  .education .education__info .form__mainitems div,.exprience .exprience__info .form__mainitems div,.referee .referee__info .form__mainitems div{
+    /* display: flex;
+    flex-direction: column;
+    flex-basis: 45%; */
+    margin: 0 5% 3% 5%;
+  }
+}
+
+@media screen and (max-width: 900px){
+  .education,.exprience,.referee{
+    background-color: rgb(240, 250, 250);
+    /* border: 5px solid red; */
+    margin-top: 8rem;
+    width: 80%;
+    height: 70%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    transition: .5s;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+  .education .form__close #closeformbbbtn,.exprience .form__close #closeformbbbtn,.referee .form__close #closeformbbbtn{
+    /* border: 5px solid yellow ; */
+    width: 10%;
+    position: relative;
+    float: right;
+    margin: 0;
+    border-radius: 0;
+    /* margin-right: 1rem; */
+    background-color: red;
+  }
+
+  .education .education__info .form__mainitems, .exprience .exprience__info .form__mainitems, .referee .referee__info .form__mainitems{
+    display:grid;
+    flex-direction: row;
+  
+  }
+  .education .education__info .form__mainitems div,.exprience .exprience__info .form__mainitems div,.referee .referee__info .form__mainitems div{
+    /* display: flex;
+    flex-direction: column;
+    flex-basis: 45%; */
+    margin: 0 5% 3% 5%;
+  }
 }

@@ -52,13 +52,6 @@ export default class extends AbstractView {
                             <input type="text" id="jobTitle" name="jobTitle">
                         </div>
                     </div>
-                    
-                    <div class="form__mainitems">
-                        <div>
-                            <label for="insitution">Insitution: </label>
-                            <input type="text" id="insitution" name="insitution">
-                        </div>
-                    </div>
 
                     <div class="form__mainitems">
                         <div>
@@ -70,11 +63,18 @@ export default class extends AbstractView {
                             <input type="tel" id="cell" name="cell">
                         </div>
                     </div>
+                    <div class="form__mainitems">
+                        <div>
+                            <label for="insitution">Insitution: </label>
+                            <input type="text" id="insitution" name="insitution">
+                        </div>
+                    </div>
                     <div class="formClass__buttons">
                         <button type="submit">Edit</button>
                         <button type="submit">Delete</button>
                         <button type="submit">Save changes</button>
                     </div>
+                    
                 </form>
             </section>
             
