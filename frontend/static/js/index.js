@@ -15,60 +15,65 @@ import SelfDescribeWords from "./views/SelfDescribeWords.js";
 
 import { validateForm } from "./validations/validatePersonalDetails.js";
 
-const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
+const pathToRegex = (path) =>
+  new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 
-const getParams = match => {
-    const values = match.result.slice(1);
-    const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map(result => result[1]);
+const getParams = (match) => {
+  const values = match.result.slice(1);
+  const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map(
+    (result) => result[1]
+  );
 
-    return Object.fromEntries(keys.map((key, i) => {
-        return [key, values[i]];
-    }));
+  return Object.fromEntries(
+    keys.map((key, i) => {
+      return [key, values[i]];
+    })
+  );
 };
 
-const navigateTo = url => {
-    history.pushState(null, null, url);
-    router();
+const navigateTo = (url) => {
+  history.pushState(null, null, url);
+  router();
 };
 
 const router = async () => {
-    const routes = [
-        { path: "/", view: Home },
-        // { path: "/Profile", view: Profile},
-        {path: "/PersonalDetails", view: PersonalDetails},
-        { path: "/Education", view: Education},
-        { path: "/WorkExperience", view: WorkExperience},
-        { path: "/Referees", view: Referees},
-        { path: "/posts", view: Posts },
-        { path: "/posts/:id", view: PostView },
-        { path: "/interview_skills", view: InterviewSkills},
-        { path: "/JobSearchProcess", view: JobSearchProcess},
-        { path: "/BeforeInterview", view: BeforeInterview},
-        { path: "/DuringInterview", view: DuringInterview},
-        { path: "/TellYourself", view: TellYourself},
-        { path: "/SelfDescribeWords", view: SelfDescribeWords},
-        
-        
-    ];
+  const routes = [
+    { path: "/", view: Home },
+    // { path: "/Profile", view: Profile},
+    { path: "/PersonalDetails", view: PersonalDetails },
+    { path: "/Education", view: Education },
+    { path: "/WorkExperience", view: WorkExperience },
+    { path: "/Referees", view: Referees },
+    { path: "/posts", view: Posts },
+    { path: "/posts/:id", view: PostView },
+    { path: "/interview_skills", view: InterviewSkills },
+    { path: "/JobSearchProcess", view: JobSearchProcess },
+    { path: "/BeforeInterview", view: BeforeInterview },
+    { path: "/DuringInterview", view: DuringInterview },
+    { path: "/TellYourself", view: TellYourself },
+    { path: "/SelfDescribeWords", view: SelfDescribeWords },
+  ];
 
-    // Test each route for potential match
-    const potentialMatches = routes.map(route => {
-        return {
-            route: route,
-            result: location.pathname.match(pathToRegex(route.path))
-        };
-    });
+  // Test each route for potential match
+  const potentialMatches = routes.map((route) => {
+    return {
+      route: route,
+      result: location.pathname.match(pathToRegex(route.path)),
+    };
+  });
 
-    let match = potentialMatches.find(potentialMatch => potentialMatch.result !== null);
+  let match = potentialMatches.find(
+    (potentialMatch) => potentialMatch.result !== null
+  );
 
-    if (!match) {
-        match = {
-            route: routes[0],
-            result: [location.pathname]
-        };
-    }
+  if (!match) {
+    match = {
+      route: routes[0],
+      result: [location.pathname],
+    };
+  }
 
-    const view = new match.route.view(getParams(match));
+  const view = new match.route.view(getParams(match));
 
     document.querySelector('#app').innerHTML = await view.getHtml();
 
@@ -83,29 +88,58 @@ const router = async () => {
 
 window.addEventListener("popstate", router);
 
+// Get the anchor element
+/* const anchorElement = document.querySelector('a.nav__link');
 
+// Add a click event listener to the anchor element
+anchorElement.addEventListener('click', function(event) {
+	// Prevent the default behavior of the anchor (e.g., navigating to the href URL)
+	event.preventDefault();
+
+ 
+
+	// Check if the actual target of the click event is the anchor itself
+	if (event.target === anchorElement) {
+		// The click was on the anchor element, and you can handle the click action here
+		// For example, you can redirect to the link's URL manually:
+		window.location.href = anchorElement.getAttribute('href');
+		navigateTo(window.location.href);
+	}
+}); */
+
+// document.addEventListener("DOMContentLoaded", () => {
+//     document.body.addEventListener("click", e => {
+//         if ( e.target === anchorElement) {
+//             console.log("Clicked element is <i> tag");
+//             e.preventDefault();
+//             navigateTo(e.target.href);
+//         }
+//     });
+
+//     router();
+// });
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.body.addEventListener("click", e => {
-        if (e.target.matches("[data-link]")) {
-            // console.log(e.target);
-            // console.log("Clicked element is <i> tag");
-            e.preventDefault();
-            navigateTo(e.target.href);
-        }
-    });
+  document.body.addEventListener("click", (e) => {
+    if (e.target.matches("[data-link]")) {
+      // console.log(e.target);
+      // console.log("Clicked element is <i> tag");
+      e.preventDefault();
+      navigateTo(e.target.href);
+    }
+  });
 
-    router();
+  router();
 });
 
 
 //Arrows
 let arrow = document.querySelectorAll(".arrow");
 for (var i = 0; i < arrow.length; i++) {
-  arrow[i].addEventListener("click", (e)=>{
- let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
-//  console.log(arrowParent);
- arrowParent.classList.toggle("showMenu");
+  arrow[i].addEventListener("click", (e) => {
+    let arrowParent = e.target.parentElement.parentElement; //selecting main parent of arrow
+    //  console.log(arrowParent);
+    arrowParent.classList.toggle("showMenu");
   });
 }
 
@@ -113,32 +147,8 @@ for (var i = 0; i < arrow.length; i++) {
 let sidebar = document.querySelector(".sidebar");
 let sidebarBtn = document.querySelector(".bx-menu");
 // console.log(sidebarBtn);
-sidebarBtn.addEventListener("click", ()=>{
+sidebarBtn.addEventListener("click", () => {
   sidebar.classList.toggle("close");
-});
-
-document.addEventListener("DOMContentLoaded", () =>{
-
-    let button = document.getElementById("closeformbbbtn");
-    var form = document.getElementById("education");
-    let openbtn = document.getElementById("openeduc")
-    button.addEventListener("click", () => {
-
-            form.style.display = "none";
-            console.log("none working");
-
-    });
-
-    document.body.addEventListener("click", e => {
-        if (e.target.matches("[open-edu]")) {
-            console.log(e.target.id);
-            e.preventDefault();
-            form.style.display = "block";
-            console.log("block working");
-        }
-    });
-
-
 });
 
 /* fetch data from API endpoint */
