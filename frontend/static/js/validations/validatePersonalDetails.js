@@ -59,21 +59,21 @@ export function validateForm() {
     });
 
     // Get form field values
-    const firstNameInput = document.getElementById('fname').value;
-    const firstNameError = document.getElementById('fnameValidation');
-    if (firstNameInput.trim() === "" || firstNameInput === null)
-    {
-        firstNameError.textContent = "Please enter your first name.";
-        isValid = false;
-    }
+    // const firstNameInput = document.getElementById('fname').value;
+    // const firstNameError = document.getElementById('fnameValidation');
+    // if (firstNameInput.trim() === "" || firstNameInput === null)
+    // {
+    //     firstNameError.textContent = "Please enter your first name.";
+    //     isValid = false;
+    // }
 
-    const lastNameInput = document.getElementById('lname').value;
-    const lastNameError = document.getElementById('lnameValidation');
-    if (lastNameInput.trim() === "" || lastNameInput === null)
-    {
-        lastNameError.textContent = "Please enter your last name.";
-        isValid = false;
-    }
+    // const lastNameInput = document.getElementById('lname').value;
+    // const lastNameError = document.getElementById('lnameValidation');
+    // if (lastNameInput.trim() === "" || lastNameInput === null)
+    // {
+    //     lastNameError.textContent = "Please enter your last name.";
+    //     isValid = false;
+    // }
 
     // const celllInput = document.getElementById('cell').value;
     // const cellError = document.getElementById('cellValidation');
@@ -90,20 +90,27 @@ export function validateForm() {
     //     }
     // }
 
-    const emailInput = document.getElementById('email').value;
-    const emailError = document.getElementById('emailValidation');
-    if (emailInput.trim() === "" || emailInput === null)
-    {
-        emailError.textContent = "Please enter an email.";
-        isValid = false;
-    } else {
-        if (!isValidEmail(emailInput)) {
-            emailError.textContent = "Please enter a valid email.";
-            isValid = false;
-        } else {
-            emailError.textContent = "";
-        }
-    }
+    // const emailInput = document.getElementById('email').value;
+    // const emailError = document.getElementById('emailValidation');
+    // if (emailInput.trim() === "" || emailInput === null)
+    // {
+    //     emailError.textContent = "Please enter an email.";
+    //     isValid = false;
+    // } else {
+    //     if (!isValidEmail(emailInput)) {
+    //         emailError.textContent = "Please enter a valid email.";
+    //         isValid = false;
+    //     } else {
+    //         emailError.textContent = "";
+    //     }
+    // }
+
+    // const addressInput = document.getElementById('address').value;
+    // const addressError = document.getElementById('addressValidation');
+    // if (addressInput.trim() === "" || addressInput === null)
+    // {
+    //     addressError.textContent = "Please enter an address.";
+    // }
 
     const citizenInputs = document.querySelectorAll('#citizenContainer input[name="citizen"]');
     const citizenError = document.getElementById('citizenValidation');

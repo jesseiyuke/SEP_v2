@@ -286,6 +286,11 @@ body{
     left: 78px;
     width: calc(100% - 78px);
   }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 /* footer */
@@ -470,13 +475,25 @@ a {
   /* Vertically center the content */
 }
 
-button {
+.button-save {
   width: 50%;
   padding: 10px 0;
   margin: 10px auto;
   border-radius: 5px;
   border: none;
   background: #007bff;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.button-discard {
+  width: 50%;
+  padding: 10px 0;
+  margin: 10px auto;
+  border-radius: 5px;
+  border: none;
+  background: #c0c0c0;
   font-size: 14px;
   font-weight: 600;
   color: #fff;
@@ -573,8 +590,6 @@ label {
   } */
 }
 
-
-
 select.floating-select::-ms-expand {
   display: none;
 }
@@ -593,11 +608,6 @@ select.floating-select::-ms-expand {
   top: -10px;
   font-size: 15px;
 }
-
-
-
-
-
 
 /* Style for the "Generate CV" button */
 .generate-cv {
@@ -636,8 +646,7 @@ select.floating-select::-ms-expand {
 }
 
 fieldset {
-  border: none;
-  /* border-top: 2px solid #696969; */
+  border: none
 }
 
 legend {
@@ -647,10 +656,28 @@ legend {
   /* Optional: Adjust the width of the legend */
 }
 
+.radio-group {
+  text-align: center;
+}
+
 .profile-details {
   padding: 20px;
 }
 
+.div-border {
+  border-top: 1px dotted black;
+  padding-bottom: 2px;
+}
+
+.disable {
+  background-color: #dcdcdc;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+ 
+}
 
 .education__section, .exprience__section,.referee__section{
   /* border: 5px solid green; */
