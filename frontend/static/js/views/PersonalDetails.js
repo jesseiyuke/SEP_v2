@@ -24,35 +24,44 @@ export default class extends AbstractView {
                 <form id="personalDetailsForm">
                     <div class="row">
                         <div class="floating-label-content column">
-                            <input type="text" class="floating-input" id="fname" name="fname" placeholder="Please enter your first name.">
+                            <input type="text" class="floating-input" id="fname" name="fname" readonly>
                             <label for="fname" class="floating-label">First Name</label>
                             <span id="fnameValidation" class="validation-error"></span>
                         </div>
                         <div class="floating-label-content column">
-                            <input type="text" class="floating-input" id="lname" name="lname" placeholder="Please enter your last name.">
+                            <input type="text" class="floating-input" id="lname" name="lname" readonly>
                             <label for="lname" class="floating-label">Last Name</label>
                             <span id="lnameValidation" class="validation-error"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="floating-label-content column">
-                            <input type="text" class="floating-input" id="cell" name="cell" placeholder="Please enter your cellphone number.">
-                            <label for="cell" class="floating-label">Cellphone Number</label>
-                            <span id="cellValidation" class="validation-error"></span>
-                        </div>
-                        
-                        <div class="floating-label-content column">
-                            <input type="text" class="floating-input" id="email" name="email" placeholder="Please enter your email address.">
+                            <input type="text" class="floating-input" id="email" name="email" readonly>
                             <label for="email" class="floating-label">Email</label>
                             <span id="emailValidation" class="validation-error"></span>
+                        </div>
+                        <div class="floating-label-content column">
+                            <input type="text" class="floating-input" id="address" name="address" placeholder=" ">
+                            <label for="address" class="floating-label">Address</label>
+                            <span id="addressValidation" class="validation-error"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div id="citizenContainer" class="floating-label-content column">
                             <label for="citizen">Are you a South African Citizen?</label>
-                            <input type="radio" value="true" id="citizenYes" name="citizen"/>Yes
-                            <input type="radio" value="false" id="citizenNo" name="citizen"/>No
+                            <div>
+                                <input type="radio" value="true" id="citizenYes" name="citizen"/>Yes
+                                <input type="radio" value="false" id="citizenNo" name="citizen"/>No
+                            </div>
                             <span id="citizenValidation" class="validation-error"></span>
+                        </div>
+                        <div class="floating-label-content column">
+                            <select id="nationality" name="nationality" class="floating-select"
+                            onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+                                <option value=""></option>
+                            </select>
+                            <label for="nationality" class="floating-label">Nationality</label>
+                            <span id="nationalityValidation" class="validation-error"></span>
                         </div>
                         <div class="floating-label-content column">
                             <input type="text" class="floating-input" id="idNumber" name="idNumber" placeholder=" ">
@@ -140,4 +149,10 @@ export default class extends AbstractView {
 
 
 }
+
+/* <div class="floating-label-content column">
+        <input type="text" class="floating-input" id="cell" name="cell" placeholder="Please enter your cellphone number.">
+        <label for="cell" class="floating-label">Cellphone Number</label>
+        <span id="cellValidation" class="validation-error"></span>
+    </div> */
 

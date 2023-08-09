@@ -74,7 +74,7 @@ const router = async () => {
 
     if (match.route.path === "/PersonalDetails") {
         await fetchStudentProfile();
-        // validateForms();
+        await validateForms();
         // await submitForm();
         // await populateDropdowns();
     }
@@ -156,6 +156,18 @@ async function populateDropdowns() {
     // const lookupRes = await fetch('https://localhost:7013/api/Lookup/LookupData');
     const lookups = await fetchData();
 
+    // Populate Nationality dropdown
+    const nationality = lookups.nationalities;
+
+    const nationalitySelect = document.querySelector("#nationality");
+    nationality.forEach(n => {
+        const option = document.createElement("option");
+        option.value = n.id;
+        option.textContent = n.name;
+        nationalitySelect.appendChild(option);
+    });
+
+
     // //Populate Gender dropdown
     const gender = lookups.genders;
 
@@ -231,12 +243,6 @@ async function populateDropdowns() {
 // Populate departments based on the selected faculty
 async function populateDepartments(facultyId, depSelect, department)
 {
-    // Populate departements dropdown by faculty
-    // const departmentRes = await fetch('https://localhost:7013/api/Lookup/Departments');
-    // const department = await departmentRes.json();
-
-    // const depSelect = document.querySelector("#department");
-
     const selectedFacultyId = parseInt(facultyId);
 
     const departments = department.filter(
@@ -283,7 +289,7 @@ async function fetchStudentProfile()
 {
     // // disclaimer: will have to use id of current logged in user
     // // for now, using the seeded data for testing purposes
-    const studentRes = await fetch("https://localhost:7013/api/Student/Get Student profile?StudentId=4729ca73-9590-4840-8dff-c4324ecb5f7b");
+    const studentRes = await fetch("https://localhost:7013/api/Student/Get Student profile?StudentId=b9e65457-679e-4d90-b1cd-c4cdad9c66c8");
     const student = await studentRes.json();
     console.log(student);
     
@@ -300,19 +306,50 @@ async function fetchStudentProfile()
 
     await populateDepartments(facultyId, document.querySelector("#department"), departments);
 
-    document.getElementById("fname").value = student.user.firstName;
-    document.getElementById("lname").value = student.user.lastName;
-    // document.getElementById("cell");
-    document.getElementById("email").value = student.user.email;
+    const firstName = document.getElementById("fname");
+    const lastName = document.getElementById("lname");
+    const email = document.getElementById("email");
 
-    if (student.nationalityId == 166){
-        document.getElementById("citizenYes").checked = true;
-        document.getElementById("citizenNo").checked = false;
-    } else {
-        document.getElementById("citizenYes").checked = false;
-        document.getElementById("citizenNo").checked = true;
-    }
+    firstName.value = student.user.firstName;
+    lastName.value = student.user.lastName;
+    email.value = student.user.email;
+    firstName.disabled = true;
+    lastName.disabled = true;
+    email.disabled = true;
+
+    document.getElementById("address").value = student.address;
+
+    const citizenYes = document.getElementById("citizenYes");
+    const citizenNo = document.getElementById("citizenNo");
+    const nationality = document.getElementById("nationality");
     
+    if (student.nationalityId == 166){
+        citizenYes.checked = true;
+        citizenNo.checked = false;
+        nationality.value = student.nationalityId;
+        nationality.disabled = true;
+    } else {
+        citizenYes.checked = false;
+        citizenNo.checked = true;
+        nationality.value = student.nationalityId;
+        nationality.disabled = false;
+    }
+
+    citizenYes.addEventListener("change", () => {
+        if (citizenYes.checked) {
+            nationality.value = "166";
+            nationality.disabled = true;
+        }
+    });
+
+    citizenNo.addEventListener("change", () => {
+        if (citizenNo.checked) {
+            nationality.disabled = false;
+            nationality.value = "";
+        }
+    });
+
+        
     document.getElementById("idNumber").value = student.idNumber;
     document.getElementById("gender").value = student.genderId;
     document.getElementById("race").value = student.raceId;
@@ -341,81 +378,57 @@ async function fetchStudentProfile()
 
 }
 
-function validateForms() {
+async function validateForms() {
     const form = document.getElementById("personalDetailsForm");
 
-    form.addEventListener("submit", (e) => {
-        if (!validateForm()){
+    form.addEventListener("submit", async (e) => {
+        if (!validateForm())
+        {
             e.preventDefault();
         }
+        await submitForm();
     })
 }
 
 async function submitForm() {
     
-    const saveButton = document.querySelector("#submitButton");
+    // Collect updated data from form fields
+    const updatedData = {
+        userId: "b9e65457-679e-4d90-b1cd-c4cdad9c66c8",
+        address: document.querySelector("#address").value, 
+        idNumber: document.querySelector("#idNumber").value,
+        driversLicenseId: document.querySelector("#license").value,
+        careerObjective: document.querySelector("#objective").value,
+        genderId: document.querySelector("#gender").value,
+        nationalityId: document.querySelector("#nationality").value,
+        raceId: document.querySelector("#race").value,
+        yearOfStudyId: document.querySelector("#yos").value, 
+        departmentId: document.querySelector("#department").value,
+        skills: document.querySelector("#skills").value,
+        achivements: document.querySelector("#achievements").value
+    };
+    const jsonData = JSON.stringify(updatedData);
 
-    saveButton.addEventListener("click", async () => {
-        
-        // Collect updated data from form fields
-        const updatedData = {
-            user: {
-                firstName: document.querySelector("#fname").value,
-                lastName: document.querySelector("#lname").value,
-                email: document.querySelector("#email").value
-            },
-            idNumber: document.querySelector("#idNumber").value,
-            driversLicense: {
-                id: document.querySelector("#license").value,
-                type: document.querySelector("#license").textContent
-            },
-            careerObjective: document.querySelector("#objective").value,
-            gender: {
-                id: document.querySelector("#gender").value,
-                name: document.querySelector("#gender").textContent
-            },
-            race: {
-                id: document.querySelector("#race").value,
-                name: document.querySelector("#race").textContent
-            },
-            yearOfStudy: {
-                id: document.querySelector("#yos").value,
-                name: document.querySelector("#yos").textContent,
-            },
-            department: {
-                id: document.querySelector("#department").value,
-                name: document.querySelector("#department").textContent,
-                faculty: {
-                    id: document.querySelector("#faculty").value,
-                    name: document.querySelector("#faculty").textContent
-                }
-            },
-            skills: document.querySelector("#skills").value,
-            achivements: document.querySelector("#achievements").value
-        };
+    console.log(jsonData);
 
-        // Send the updated data to the API endpoint
-        try {
-            const response = await fetch('https://localhost:7013/api/CV/UpdateStudent/e97bf092-5e39-40b6-a718-25fca73cfe5d', {
-                method: 'PUT', // Use the appropriate HTTP method (PUT, POST, etc.)
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(updatedData),
-            });
-
-            if (response.ok) {
-                // Data updated successfully
-                console.log('Data updated successfully');
-            } else {
-                // Handle error cases
-                console.error('Error updating data:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Error updating data:', error);
-        }
+    // Send the updated data to the API endpoint
+   const response = await fetch('https://localhost:7013/api/Student/UpdateStudent', {
+        method: 'PUT', // Use the appropriate HTTP method (PUT, POST, etc.)
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedData),
     });
+
+    if (response.ok) {
+        // Data updated successfully
+        console.log('Data updated successfully');
+    } else {
+        // Handle error cases
+        console.error('Error updating data:', response.statusText);
+    }
 }
+
 // document.addEventListener("DOMContentLoaded", async () => {
 
 //     // await populateDropdowns();
