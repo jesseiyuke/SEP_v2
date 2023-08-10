@@ -696,3 +696,80 @@ legend {
   display: none;
   transition: .5s;
 }
+
+.center-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust this value to fit your design */
+}
+
+.center-list a{
+
+  justify-content: center;
+  align-items: center;
+
+}
+
+ul {
+  list-style-type: disc; /* You can change this to 'circle' or 'square' if you prefer */
+  padding-left: 20px; /* Adjust the padding as needed */
+}
+
+/* h1 {
+  text-align: center;
+  margin-top: 20px;
+} */
+
+.word-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.word {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 5px;
+}
+
+p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.anchors {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.anchors a {
+  color: #007bff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+/* a {
+  color: #007bff;
+  margin: 0 10px;
+  text-decoration: none;
+} */
+
+@media (max-width: 768px) {
+  .word-list {
+    margin-top: 10px;
+  }
+
+  .word {
+    padding: 5px 8px;
+    margin: 3px;
+  }
+
+  .anchors {
+    margin-top: 10px;
+  }
+
+}

@@ -9,6 +9,8 @@ export default class extends AbstractView {
     async getHtml() {
         return `
         <h1>Job Search Process</h1>
+
+        <div class="center-list">
         <p>
         <ul>
             <li>Application [CV & CL; Application form; Online Application]</li>
@@ -20,6 +22,8 @@ export default class extends AbstractView {
         <p>
         <a href="/BeforeInterview" data-link>Next</a>
         </p>
+        </div>
+        
         `;
     }
 }

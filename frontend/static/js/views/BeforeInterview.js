@@ -8,8 +8,10 @@ export default class extends AbstractView {
 
     async getHtml() {
         return `
+        
         <h1>Before the Interview</h1>
 
+        <div class="center-list">
         <p>
         <ul>
         <li>Ensure that your diary is clear so that you can focus on the upcoming interview</li>
@@ -32,6 +34,9 @@ export default class extends AbstractView {
         <a href="/JobSearchProcess" data-link>Back</a>
         <a href="/DuringInterview" data-link>Next</a>
         </p>
+        </div>
+
+
         `;
     }
 }

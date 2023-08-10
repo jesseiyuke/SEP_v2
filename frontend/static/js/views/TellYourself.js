@@ -9,6 +9,8 @@ export default class extends AbstractView {
     async getHtml() {
         return `
             <h1>Tell me about yourself</h1>
+
+            <div class="center-list">
             <p>
             <ul>
             <li>Personal background</li>
@@ -30,6 +32,9 @@ export default class extends AbstractView {
             <a href="/DuringInterview" data-link>Back</a>
             <a href="/SelfDescribeWords" data-link>Next</a>
             </p>
+            </div>
+
+
         `;
     }
 }
