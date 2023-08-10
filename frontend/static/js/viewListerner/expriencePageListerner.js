@@ -2,8 +2,7 @@
 
 console.log("exprience Loading page is working");
 
-document.addEventListener("DOMContentLoaded", () => {
-
+export function experienceListener() {
 
   let button = document.getElementById("closeformbbbtn");
   var form = document.getElementById("exprience");
@@ -92,4 +91,4 @@ document.addEventListener("DOMContentLoaded", () => {
       form.style.display = "block";
     }
   });
-});
+}

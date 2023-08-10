@@ -14,6 +14,9 @@ import SelfDescribeWords from "./views/SelfDescribeWords.js";
 
 import { fetchStudentProfile } from "./viewListerner/personalDetailsListener.js";
 import { validateForms } from "./viewListerner/personalDetailsListener.js";
+import { educationListener } from "./viewListerner/educationPageListerner.js";
+import { experienceListener } from "./viewListerner/expriencePageListerner.js";
+import { refereeListener } from "./viewListerner/refereePageListerner.js";
 
 const pathToRegex = (path) =>
   new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
@@ -80,6 +83,15 @@ const router = async () => {
     if (match.route.path === "/PersonalDetails") {
         await fetchStudentProfile();
         await validateForms();
+    }
+    else if (match.route.path === "/Education") {
+      educationListener();
+    }
+    else if (match.route.path === "/WorkExperience") {
+      experienceListener();
+    }
+    else if (match.route === "/Referees") {
+      refereeListener();
     }
     
 };

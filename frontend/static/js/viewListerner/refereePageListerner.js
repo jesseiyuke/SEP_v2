@@ -2,9 +2,8 @@
 
 console.log("referee Loading page is working");
 
-document.addEventListener("DOMContentLoaded", () => {
-
-
+export function refereeListener()
+{
   let button = document.getElementById("closeformbbbtn");
   var form = document.getElementById("referee");
 
@@ -90,4 +89,4 @@ document.addEventListener("DOMContentLoaded", () => {
       form.style.display = "block";
     }
   });
-});
+}

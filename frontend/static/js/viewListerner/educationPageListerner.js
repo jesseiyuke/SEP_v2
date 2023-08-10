@@ -2,8 +2,8 @@
 
 console.log("education Loading page is working");
 
-document.addEventListener("DOMContentLoaded", () => {
-
+export function educationListener()
+{
 
   let button = document.getElementById("closeformbbbtn");
   var form = document.getElementById("education");
@@ -102,4 +102,5 @@ document.addEventListener("DOMContentLoaded", () => {
       form.style.display = "block";
     }
   });
-});
+}
+  
