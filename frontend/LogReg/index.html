@@ -1,0 +1,114 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="./index.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="form-box">
+            <!------------------- login form -------------------------->
+                <form action="/" class="login-container" id="login">
+                    <div class="top">
+                        <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
+                        <header>Login</header>
+                    </div>
+                    <div class="input-control">
+                        <input id="email1" name="email1" type="text" placeholder="Email" class="input-field">
+                        <div class="error"></div>
+                    </div>
+                    <div class="input-control">
+                        <input id="password1"name="password1" type="password" placeholder="Password" class="input-field">
+                        <div class="error"></div>
+                    </div>
+                    <div class="input-control">
+                        <button type="submit" name="submitButton1" class="submit" value="Sign In">Sign In</button>
+                    </div>
+
+
+                    <div class="two-col">
+                        <div class="one">
+                            <input type="checkbox" id="login-check">
+                            <label for="login-check"> Remember Me</label>
+                        </div>
+                        <div class="two">
+                            <label><a href="#">Forgot password?</a></label>
+                        </div>
+                    </div>
+
+                </form>    
+
+            <!------------------- registration form -------------------------->
+
+                <form action="/" class="register-container" id="register">
+                    <div class="top">
+                        <span>Have an account? <a href="#" onclick="login()">Login</a></span>
+                        <header>Sign Up</header>
+                    </div>
+
+                    <div class="two-forms">
+                        <div class="input-control">
+                            <input id="firstname" name="firstname" type="text" placeholder="First name" class="input-field">
+                            <div class="error"></div>
+                        </div>
+                        <div class="input-control">
+                            <input id="lastname" name="lastname" type="text" placeholder="Last name" class="input-field">
+                            <div class="error"></div>
+                        </div>
+                        <div class="input-control">
+                            <input id="email" name="email" type="text" placeholder="Email" class="input-field">
+                            <div class="error"></div>
+                        </div>
+                        <div class="input-control">
+                            <input id="cellphone" name="cellphone" type="text" placeholder="Cellphone" class="input-field">
+                            <div class="error"></div>
+                        </div>
+                        <div class="input-control">
+                            <input id="telephone" name="telephone" type="text" placeholder="Telephone" class="input-field">
+                            <div class="error"></div>
+                        </div>
+                        <div class="input-control">
+                            <input id="password"name="password" type="password" placeholder="Password" class="input-field">
+                            <div class="error"></div>
+                        </div>
+                        <div class="input-control">
+                            <input id="password2"name="password2" type="password" placeholder="Confirm Password" class="input-field">
+                            <div class="error"></div>
+                        </div>
+                        <div class="input-control">
+                            <select id="type" name="type" class="input-field">
+                            <option value="" selected disabled>Who are you?</option>
+                            <option value="Employer">Employer</option>
+                            <option value="Student">Student</option>
+                            </select>
+                            <div class="error"></div>
+                        </div>
+                    </div>
+
+                    <div class="input-control">
+                        <button type="submit" name="submitButton2" class="submit" value="Sign Up">Sign Up</button>
+                    </div>
+
+                    <div class="two-col">
+                        <div class="one">
+                            <input type="checkbox" id="register-check">
+                            <label for="register-check"> Remember Me</label>
+                        </div>
+                        <div class="two">
+                            <label><a href="#">Terms & conditions</a></label>
+                        </div>
+                    </div>
+                </form>
+
+        </div>
+    </div>
+
+
+</body>
+</html>

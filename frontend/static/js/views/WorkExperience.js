@@ -9,11 +9,11 @@ export default class extends AbstractView {
     async getHtml() {
         return `
             <nav class="navbar">
-                <a href="/PersonalDetails" class="nav_link">Personal Details</a>
-                <a href="/Education" class="nav_link">Education</a>
-                <a href="/WorkExperience" class="nav_link active">Work Experience</a>
-                <a href="/Referees" class="nav_link">Referees</a>
-                <a href="/GenerateCV" class="nav_link generate-cv">Generate CV</a>
+                <a href="/PersonalDetails" class="nav_link" data-link>Personal Details</a>
+                <a href="/Education" class="nav_link" data-link>Education</a>
+                <a href="/WorkExperience" class="nav_link active" data-link>Work Experience</a>
+                <a href="/Referees" class="nav_link" data-link>Referees</a>
+                <a href="/GenerateCV" class="nav_link generate-cv" data-link>Generate CV</a>
             </nav>
         `;
     }
