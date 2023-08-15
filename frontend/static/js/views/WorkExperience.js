@@ -1,13 +1,13 @@
 import AbstractView from "./AbstractView.js";
 
 export default class extends AbstractView {
-    constructor(params) {
-        super(params);
-        this.setTitle("Work Experience");
-    }
+  constructor(params) {
+    super(params);
+    this.setTitle("Work Experience");
+  }
 
-    async getHtml() {
-        return `
+  async getHtml() {
+    return `
             <nav class="navbar">
                 <a href="/PersonalDetails" class="nav_link">Personal Details</a>
                 <a href="/Education" class="nav_link">Education</a>
@@ -34,6 +34,10 @@ export default class extends AbstractView {
                     </tbody>
                 </table>
 
+                <div id="exprience__card" class="exprience__card">
+                    
+                </div>
+
                 <a href="#" class="add__exprience" create-exprience> Add exprience </a>
 
             </div>
@@ -41,7 +45,7 @@ export default class extends AbstractView {
                 <div class="form__close">
                     <button id="closeformbbbtn"> X </button>
                 </div>
-                <form action="" class="exprience__info">
+                <form id="exprienceform" action="" class="exprience__info">
                     <div class="form__mainitems">
                         <div>
                             <label for="employerName">Employer name: </label>
@@ -71,12 +75,11 @@ export default class extends AbstractView {
                         </div>
                     </div>
                     <div class="formClass__buttons">
-                        <button type="submit">Edit</button>
-                        <button type="submit">Delete</button>
-                        <button type="submit">Save changes</button>
+                        <button type="submit" id="deleteButton"> Delete </button>
+                        <button type="submit"> Save </button>
                     </div>
                 </form>
             </section>
         `;
-    }
+  }
 }

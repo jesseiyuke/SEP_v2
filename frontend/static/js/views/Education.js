@@ -5,11 +5,11 @@ export default class extends AbstractView {
     super(params);
     this.setTitle("Education");
   }
-  async addEventListener(){
-        const add=document.querySelector(".add__education");
-        add.addEventListener("click",()=>{
-            console.log("Add clicked");
-        });
+  async addEventListener() {
+    const add = document.querySelector(".add__education");
+    add.addEventListener("click", () => {
+      console.log("Add clicked");
+    });
   }
 
   async getHtml() {
@@ -40,10 +40,8 @@ export default class extends AbstractView {
                         
                     </tbody>
                 </table>
-                <div class="education__card">
-                    <div>
-                        <h4>Bsc - Computer Science </h4> 
-                    </div>
+                <div id="education__card" class="education__card">
+                    
                 </div>
 
                 <a href="#" class="add__education" create-education> Add education </a>
@@ -53,7 +51,7 @@ export default class extends AbstractView {
                 <div class="form__close">
                     <button id="closeformbbbtn"> X </button>
                 </div>
-                <form action="" class="education__info">
+                <form id="educationform" action="" class="education__info">
                     <div class="form__mainitems">
                         <div>
                             <label for="institutionName">Institution: </label>
@@ -97,9 +95,8 @@ export default class extends AbstractView {
                         </div>
                     </div>
                     <div class="formClass__buttons">
-                        <button type="submit">Edit</button>
-                        <button type="submit">Delete</button>
-                        <button type="submit">Save changes</button>
+                        <button type="submit" id="deleteButton"> Delete </button>
+                        <button type="submit"> Save </button>
                     </div>
 
                 </form>
