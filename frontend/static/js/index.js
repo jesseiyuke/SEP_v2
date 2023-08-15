@@ -119,11 +119,20 @@ anchorElement.addEventListener('click', function(event) {
 
 document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("click", e => {
+        
         if (e.target.matches("[data-link]")) {
             // console.log(e.target);
             // console.log("Clicked element is <i> tag");
             e.preventDefault();
             navigateTo(e.target.href);
+        }
+
+        if(e.target.tagName=="I" || e.target.tagName=="SPAN"){
+            let anchorElement=e.target.closest("a");
+            if(anchorElement){
+                e.preventDefault();
+                navigateTo(anchorElement.getAttribute("href"));
+            } 
         }
     });
 
