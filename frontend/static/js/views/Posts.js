@@ -1,158 +1,179 @@
 import AbstractView from "./AbstractView.js";
-  let jobPosts;
-  let documents;
 
-  export default class extends AbstractView {
-    constructor(params) {
-      super(params);
-      this.setTitle("Posts");
-    }
-    uploadFile() {
-      var fileInput = document.getElementById('fileInput');
-      var file = fileInput.files[0];
-      documents.push(file);
-      let fileName= file.name;
-      console.log(file.type)
-      const docsDiv = document.getElementById('uploaded_files');
-      const fileItem = document.createElement('div');
-      fileItem.classList.add('file-item');
-      fileItem.innerHTML = `
-        <p>${fileName}</p>
-        <button class="delete-file-btn">Delete</button>
-      `;
-      docsDiv.appendChild(fileItem);
-      fileInput.value = "";
-      const deleteButtons = fileItem.querySelectorAll('.delete-file-btn');
-      deleteButtons.forEach(button => {
-        button.addEventListener('click', () => {
-        this.deleteFile(fileName);
-        fileItem.remove();
-        });
-      });
-    }
-    Apply(){
-      var formData = new FormData();
-      for(const document in documents){
-        formData.append("docs",document);
-      }
-      fetch("http://localhost:3000/post",{
-        method:"post",
-        body: formData
-      }).catch(console.error);
-    }
-    saveFile(){
+const jobPosts = [
+  {
+    jobTitle: "Software Developer Intern 1",
+    department: "Wits Innovation Centre",
+    location: "Wits Plus Building, Third Floor",
+    jobType: "Full-time",
+    startDate: "19/07/23",
+    endDate: "22/02/24",
+    weekHour: "6-8 Hours",
+    hourlyRate: 180.27,
+    jobDescription: "Develop high-quality software :)",
+    minimumRequirements: "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
+    keyResponsibilities: "Write code|Give presentations|Join meetings",
+    closingDate: "26/09/23",
+    contactPerson: "John Doe",
+    email: "JohnDoe@wits.ac.za",
+  },
+  {
+    jobTitle: "Software Developer Intern 2",
+    location: "Wits Plus Building, Third Floor",
+    department: "Wits Innovation Centre",
+    jobType: "Part-time",
+    startDate: "19/07/23",
+    endDate: "22/02/24",
+    weekHour: "10-12 Hours",
+    hourlyRate: 150.50,
+    jobDescription: "Develop cutting-edge software solutions.",
+    minimumRequirements: "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
+    keyResponsibilities: "Design software architecture|Collaborate with teams|Debug and test code",
+    closingDate: "30/09/23",
+    contactPerson: "Jane Smith",
+    email: "JaneSmith@wits.ac.za",
+  },
+  {
+    jobTitle: "Software Developer Intern 3",
+    location: "Wits Plus Building, Third Floor",
+    department: "Wits Innovation Centre",
+    jobType: "Full-time",
+    startDate: "19/07/23",
+    endDate: "22/02/24",
+    weekHour: "6-8 Hours",
+    hourlyRate: 180.27,
+    jobDescription: "Create innovative software applications.",
+    minimumRequirements: "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
+    keyResponsibilities: "Implement new features|Conduct code reviews|Assist in testing",
+    closingDate: "28/09/23",
+    contactPerson: "Michael Johnson",
+    email: "MichaelJohnson@wits.ac.za",
+  },
+  {
+    jobTitle: "Software Developer Intern 4",
+    location: "Wits Plus Building, Third Floor",
+    department: "Wits Innovation Centre",
+    jobType: "Full-time",
+    startDate: "19/07/23",
+    endDate: "22/02/24",
+    weekHour: "6-8 Hours",
+    hourlyRate: 180.27,
+    jobDescription: "Create innovative software applications.",
+    minimumRequirements: "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
+    keyResponsibilities: "Implement new features|Conduct code reviews|Assist in testing",
+    closingDate: "28/09/23",
+    contactPerson: "Michael Johnson",
+    email: "MichaelJohnson@wits.ac.za",
+  },
+  {
+    jobTitle: "Software Developer Intern 5",
+    location: "Wits Plus Building, Third Floor",
+    department: "Wits Innovation Centre",
+    jobType: "Full-time",
+    startDate: "19/07/23",
+    endDate: "22/02/24",
+    weekHour: "6-8 Hours",
+    hourlyRate: 180.27,
+    jobDescription: "Create innovative software applications.",
+    minimumRequirements: "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
+    keyResponsibilities: "Implement new features|Conduct code reviews|Assist in testing",
+    closingDate: "28/09/23",
+    contactPerson: "Michael Johnson",
+    email: "MichaelJohnson@wits.ac.za",
+  },
+  {
+    jobTitle: "Software Developer Intern 6",
+    location: "Wits Plus Building, Third Floor",
+    department: "Wits Innovation Centre",
+    jobType: "Full-time",
+    startDate: "19/07/23",
+    endDate: "22/02/24",
+    weekHour: "6-8 Hours",
+    hourlyRate: 180.27,
+    jobDescription: "Create innovative software applications.",
+    minimumRequirements: "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
+    keyResponsibilities: "Implement new features|Conduct code reviews|Assist in testing",
+    closingDate: "28/09/23",
+    contactPerson: "Michael Johnson",
+    email: "MichaelJohnson@wits.ac.za",
+  },
+  // Add more sample job posts here if needed
+];
 
-      var formData = new FormData();
-      for(const document in documents){
-        formData.append("docs",document);
-      }
-      fetch("http://localhost:3000/post",{
-        method:"post",
-        body: formData
-      }).catch(console.error);
+export default class extends AbstractView {
+  constructor(params) {
+    super(params);
+    this.setTitle("Posts");
+  }
+
+  async getHtml() {
+    const jobPostsHTML = jobPosts.map((post, index) => this.getJobCardHtml(post, index)).join("");
+
+    // Wrap job cards inside a scrollable container
+    return ` 
+      <div class="custom-head">
+        <h1>Available Job Posts</h1>
+        <hr>
+      </div>
+
+      <br/>
       
-    }
-    deleteFile(fileName) {
-      documents = documents.filter(file => file.name !== fileName);
-      console.log(documents);
-    }
-    async getHtml() {
-      try {
-        jobPosts=await this.fetchAndRenderPosts();
-        const jobPostsHTML = jobPosts
-        .map((post, index) => this.getJobCardHtml(post, index))
-        .join("");
-      return ` 
-        <div class="custom-head">
-          <h1>Available Job Posts</h1>
-          <hr>
+      <div class="custom-search-dropdown">
+        <div class="search-input">
+          <input type="search" placeholder="Search...">
+          <i class='bx bx-search-alt-2 search-icon'></i>
         </div>
-        <div class="popup" id="savePopup">
-          <button id="saveCloseButton" class="popup-button">Close</button>
-          <div class="popup-header">Saving</div>
-          <div class="popup-content">Your applicatin was saved for later update</div>
-        </div>
-        <div class="popup" id="applyPopup">
-          <button id="applyCloseButton" class="popup-button">Close</button>
-          <div class="popup-header">Applying</div>
-          <div class="popup-content">Your applicatin was sent to the employer</div>
-        </div>
-        <br/>
-        
-        <div class="custom-search-dropdown">
-          <div class="search-input">
-            <input type="search" placeholder="Search...">
-            <i class='bx bx-search-alt-2 search-icon'></i>
+        <div class="filter-dropdown">
+          <div class="filter-btn">
+            <i class='bx bx-filter'></i>
+            <span>Filter</span>
           </div>
-          <div class="filter-dropdown">
-            <div class="filter-btn">
-              <i class='bx bx-filter'></i>
-              <span>Filter</span>
-            </div>
-            <ul class="filter-options">
-              <li><i class='bx bx-dollar'></i>Rate</li>
-              <li><i class='bx bx-briefcase'></i>Job Type</li>
-              <li><i class='bx bx-history'></i>Application History</li>
-            </ul>
-          </div>
+          <ul class="filter-options">
+            <li><i class='bx bx-dollar'></i>Rate</li>
+            <li><i class='bx bx-briefcase'></i>Job Type</li>
+            <li><i class='bx bx-history'></i>Application History</li>
+          </ul>
         </div>
-  
-        <br/>
-  
-        <div class="page-container">
-  
-          <div class="job-posts-container">
-            <div class="job-posts">
+      </div>
+
+      <br/>
+
+      <div class="page-container">
+
+        <div class="job-posts-container">
+          <div class="job-posts">
             ${jobPostsHTML}
-            </div>
           </div>
-  
-          <div class="job-details-container">
-            <section class="job-details hidden">
-              <!-- Job details will be displayed here -->
-            </section>
-          </div>
-
         </div>
 
-      `;
-    } catch (error) {
-      console.error("Error fetching and rendering posts:", error);
-      return "Error fetching and rendering posts.";
-    }
-      
-    }
-    async fetchAndRenderPosts() {
-      let jobPosts;
-      try {
-        const response = await fetch("http://localhost:3000/posts");
-        const data = await response.json();
-        jobPosts=data;
-      } catch (error) {
-        console.error("Error fetching JSON:", error);
-      }
-      return jobPosts;
-    }
-    getJobCardHtml(post, index) {
-      return `
-        <div class="job-card" data-post-id="${index}">
-          <h2>${post.jobTitle}</h2>
-          <p>Department: ${post.department}</p>
-          <p>FT/PT: ${post.jobType}</p>
-          <p>Start Date: ${post.startDate}</p>
-          <p>End Date: ${post.endDate}</p>
-          <p>Week Hour: ${post.weekHour}</p>
-          <p>Hourly Rate: ${post.hourlyRate}</p>
+        <div class="job-details-container">
+          <section class="job-details hidden">
+            <!-- Job details will be displayed here -->
+          </section>
         </div>
-      `;
-    }
+        
+      </div>
+    `;
+  }
 
+  getJobCardHtml(post, index) {
+    return `
+      <div class="job-card" data-post-id="${index}">
+        <h2>${post.jobTitle}</h2>
+        <p>Department: ${post.department}</p>
+        <p>FT/PT: ${post.jobType}</p>
+        <p>Start Date: ${post.startDate}</p>
+        <p>End Date: ${post.endDate}</p>
+        <p>Week Hour: ${post.weekHour}</p>
+        <p>Hourly Rate: ${post.hourlyRate}</p>
+      </div>
+    `;
+  }
 
-  
-    // Update event listener to toggle job details visibility
-    async addEventListener() {
-      const jobCards = document.querySelectorAll(".job-card");
-      const jobDetailsSection = document.querySelector(".job-details");
+  // Update event listener to toggle job details visibility
+  async addEventListener() {
+    const jobCards = document.querySelectorAll(".job-card");
+    const jobDetailsSection = document.querySelector(".job-details");
 
       jobCards.forEach((card, index) => {
         card.addEventListener("click", () => {
