@@ -48,8 +48,8 @@ const router = async () => {
         { path: "/AfterTheInterview", view: AfterTheInterview},
     ];
 
-    // Test each route for potential match
-    const potentialMatches = routes.map(route => {
+     // Test each route for potential match
+     const potentialMatches = routes.map(route => {
         return {
             route: route,
             result: location.pathname.match(pathToRegex(route.path))
@@ -67,7 +67,9 @@ const router = async () => {
 
     const view = new match.route.view(getParams(match));
 
-    document.querySelector("#app").innerHTML = await view.getHtml();
+    // Use innerHTML to set the view's HTML content
+    document.querySelector("#app").innerHTML = '';
+    document.querySelector("#app").appendChild(await view.getHtml());
 };
 
 window.addEventListener("popstate", router);
