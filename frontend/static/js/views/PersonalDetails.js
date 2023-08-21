@@ -5,6 +5,7 @@ export default class extends AbstractView {
     constructor(params) {
         super(params);
         this.setTitle("Personal Details");
+        const name = "PersonalDetails";
     }
 
     async getHtml() {
@@ -19,106 +20,153 @@ export default class extends AbstractView {
             </nav>
 
             <br>
-            <div class="center-container">
+            <div class="details-container">
                 <form id="personalDetailsForm">
-                    <fieldset>
-                        <div class="personal-details">
-                            <label for="fname">First Name:</label>
-                            <input type="text" id="fname" name="fname">
-                            <span id="fnameValidation" class="validation-error"></span>
-                            <br>
-    
-                            <label for="lname">Last Name:</label>
-                            <input type="text" id="lname" name="lname">
-                            <span id="lnameValidation" class="validation-error"></span>
-                            <br/>
-
-                            <label for="tel">Telephone Number:</label>
-                            <input type="text" id="tel" name="tel">
-                            <span id="telValidation" class="validation-error"></span>
-                            <br>
-
-                            <label for="cell">Cellphone:</label>
-                            <input type="text" id="cell" name="cell">
-                            <span id="cellValidation" class="validation-error"></span>
-                            <br>
-
-                            <label for="email">Email:</label>
-                            <input type="text" id="email" name="email">
-                            <span id="emailValidation" class="validation-error"></span>
-                            <br/>
-
-                            <div id="citizenContainer">
-                                <label for="citizen">Are you a South African Citizen?</label>
-                                <input type="radio" value="true" id="citizenYes" name="citizen"/>Yes
-                                <input type="radio" value="false" id="citizenNo" name="citizen"/>No
-                                <span id="citizenValidation" class="validation-error"></span>
+                    <fieldset disabled>
+                        <br>
+                        <div>
+                            <div class="floating-label-content">
+                                <label for="fname">First Name</label>
+                                <input type="text" class="floating-input disable" id="fname" name="fname" readonly>
+                                <span id="fnameValidation" class="validation-error"></span>
                             </div>
-
-                            <label for="idNumber">ID/Passport Number:</label>
-                            <input type="text" id="idNumber" name="idNumber">
-                            <span id="idNumberValidation" class="validation-error"></span>
-                            <br>
-
-                            <label for="license">Driving License:</label>
-                            <select id="license" name="license">
-                                <option value="">Select Driver's License</option>
-                            </select>
-                            <br/>
-
-                            <label for="yos">Year of Study:</label>
-                            <select id="yos" name="yos">
-                                <option value="">Select Year of Study</option>
-                            </select>
-                            <br>
-
-                            <label for="faculty">Faculty:</label>
-                            <select id="faculty" name="faculty">
-                                <option value="">Select Faculty</option>
-                            </select>
-                            <br>
-
-                            <label for="department">Department:</label>
-                            <select id="department" name="department">
-                                <option value="">Select Department</option>
-                            </select>
-                            <br/>
-
-                            <label for="objective">Career Objective:</label>
-                            <textarea id="objective" name="objective"></textarea>
-                            <span id="objectiveValidation" class="validation-error"></span>
-                            <br/>
-
-                            <label for="skills">Skills (please enter every skill on a new line):</label>
-                            <textarea id="skills" name="skills"></textarea>
-                            <br/>
-
-                            <label for="achievements">Achievements:</label>
-                            <textarea id="achievements" name="achievements"></textarea>
-                            <br/>
-
-                            <label for="interests">Career Objective:</label>
-                            <textarea id="interests" name="interests"></textarea>
-                            <br/>
+                            <div class="floating-label-content">
+                                <label for="lname">Last Name</label>
+                                <input type="text" class="floating-input disable" id="lname" name="lname" readonly>
+                                <span id="lnameValidation" class="validation-error"></span>
+                            </div>
+                            <div class="floating-label-content">
+                                <label for="email">Email</label>
+                                <input type="text" class="floating-input disable" id="email" name="email" readonly>
+                                <span id="emailValidation" class="validation-error"></span>
+                            </div>
                         </div>
                     </fieldset>
-                    <button>Save</button>
+                    <div class="div-border"></div>
+                    <fieldset>
+                        <br/>
+                        <div>
+                            <div class="floating-label-content">
+                                <input type="text" class="floating-input" id="address" name="address" placeholder=" ">
+                                <label for="address" class="floating-label">Address</label>
+                                <span id="addressValidation" class="validation-error"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <div id="citizenContainer" class="floating-label-content radio-group">
+                                <label for="citizen">Are you a South African Citizen?</label>
+                                <div>
+                                    <input type="radio" value="true" id="citizenYes" name="citizen"/>Yes
+                                    <input type="radio" value="false" id="citizenNo" name="citizen"/>No
+                                </div>
+                                <span id="citizenValidation" class="validation-error"></span>
+                            </div>
+                            <div class="floating-label-content">
+                                <select id="nationality" name="nationality" class="floating-select"
+                                onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+                                    <option value=""></option>
+                                </select>
+                                <label for="nationality" class="floating-label">Nationality</label>
+                                <span id="nationalityValidation" class="validation-error"></span>
+                            </div>
+                            <div class="floating-label-content">
+                                <input type="text" class="floating-input" id="idNumber" name="idNumber" placeholder=" ">
+                                <label for="idNumber" class="floating-label">ID/Passport Number</label>
+                                <span id="idNumberValidation" class="validation-error"></span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="floating-label-content">
+                                <select id="gender" name="gender" class="floating-select"
+                                onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+                                    <option value=""></option>
+                                </select>
+                                <label for="gender" class="floating-label">Gender</label>
+                                <span id="genderValidation" class="validation-error"></span>
+                            </div>
+                            <div class="floating-label-content">
+                                <select id="race" name="race" class="floating-select"
+                                onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+                                    <option value=""></option>
+                                </select>
+                                <label for="race" class="floating-label">Race</label>
+                                <span id="raceValidation" class="validation-error"></span>
+                            </div>
+                            <div class="floating-label-content">
+                                <select class="floating-select" id="license" name="license" 
+                                onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+                                    <option value=""></option>
+                                </select>
+                                <label for="license" class="floating-label">Driver's License</label>
+                                <span id="licenseValidation" class="validation-error"></span>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="div-border"></div>
+                    <fieldset>
+                        <br/>
+                        <div>
+                            <div class="floating-label-content">
+                                <select id="yos" name="yos" class="floating-select"
+                                onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+                                    <option value=""></option>
+                                </select>
+                                <label for="yos" class="floating-label">Year of Study</label>
+                                <span id="yosValidation" class="validation-error"></span>
+                            </div>
+                            <div class="floating-label-content">
+                                <select id="faculty" name="faculty" class="floating-select"
+                                onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+                                    <option value=""></option>
+                                </select>
+                                <label for="faculty" class="floating-label">Faculty</label>
+                                <span id="facultyValidation" class="validation-error"></span>
+                            </div>
+                            <div class="floating-label-content">
+                                <select id="department" name="department" class="floating-select"
+                                onclick="this.setAttribute('value', this.value);" onchange="this.setAttribute('value', this.value);" value="">
+                                    <option value=""></option>
+                                </select>
+                                <label for="department" class="floating-label">Department</label>
+                                <span id="departmentValidation" class="validation-error"></span>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="div-border"></div>
+                    <fieldset>
+                        <br/>
+                        <div class="floating-label-content">
+                            <label for="objective">Career Objective</label>
+                            <textarea id="objective" name="objective" class="floating-input" placeholder=" "></textarea>
+                            <span id="objectiveValidation" class="validation-error"></span>
+                        </div>
+                        <div class="floating-label-content">
+                            <label for="skills">Skills (please enter every skill on a new line)</label>
+                            <textarea id="skills" name="skills" class="floating-input"></textarea>
+                            <span id="skillsValidation" class="validation-error"></span>
+                        </div>
+                        <div class="floating-label-content">
+                            <label for="achievements">Achievements (please enter every achievement on a new line)</label>
+                            <textarea id="achievements" name="achievements" class="floating-input"></textarea>
+                            <span id="achievementsValidation" class="validation-error"></span>
+                        </div>
+                    </fieldset>
+                    <div class="button-container">
+                        <button class="button-discard">Discard</button>
+                        <button id="submitButton" class="button-save">Save</button>
+                    </div>
                 </form>
             </div>
            
         `;
     }
 
-    async afterRender() {
-
-        const form = document.getElementById("personalDetailsForm");
-
-        form.addEventListener("submit", (e) => {
-            if (!validateForm()){
-                e.preventDefault();
-            }
-        })
-    }
-
 
 }
+
+/* <div class="floating-label-content column">
+        <input type="text" class="floating-input" id="cell" name="cell" placeholder="Please enter your cellphone number.">
+        <label for="cell" class="floating-label">Cellphone Number</label>
+        <span id="cellValidation" class="validation-error"></span>
+    </div> */
+

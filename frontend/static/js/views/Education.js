@@ -5,6 +5,12 @@ export default class extends AbstractView {
     super(params);
     this.setTitle("Education");
   }
+  async addEventListener() {
+    const add = document.querySelector(".add__education");
+    add.addEventListener("click", () => {
+      console.log("Add clicked");
+    });
+  }
 
   async getHtml() {
     return `
@@ -20,7 +26,7 @@ export default class extends AbstractView {
 
             <div class="education__section">
 
-                <table class="education__table">
+                <table class="education__table" id="educationTable">
                     <thead>
                         <tr>
                         <th>Institution</th>
@@ -31,64 +37,89 @@ export default class extends AbstractView {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>University of witwatersrand</td>
-                            <td>20/12/2019</td>
-                            <td>20/12/2022</td>
-                            <td>BSc - Computer Science</td>
-                            <td><a id="1" href="#" open-edu>View details</a></td>
-                        </tr>
-
-                        <tr>
-                            <td>University of johannesburg</td>
-                            <td>20/12/2019</td>
-                            <td>20/12/2022</td>
-                            <td>Eng - Electrical eng</td>
-                            <td><a id="2" href="#" open-edu>View details</a></td>
-                        </tr>
-
+                        
                     </tbody>
                 </table>
+                <div id="education__card" class="education__card">
+                    
+                </div>
 
+                <a href="#" class="add__education" create-education> Add education </a>
 
-                <a href="#education" class="add__education"> <p id="add__sign"> + </p> <p>Add education</p> </a>
             </div>
             <section class="education" id="education">
-                <form action="" class="education__info">
-                    <label for="institutionName">Institution: </label>
-                    <input type="text" id="institutionName" name="institutionName">
+                <div class="form__close">
+                    <button id="closeformbbbtn"> X </button>
+                </div>
+                <form id="educationform" action="" class="education__info">
+                    <div class="form__mainitems">
+                        <div>
+                            <label for="institutionName">Institution: </label>
+                            <input type="text" id="institutionName" name="institutionName">
+                        </div>
+                        <div>
+                            <label for="qualificationName">Qualification name: </label>
+                            <input type="text" id="qualificationName" name="qualificationName">
+                        </div>
+                    </div>
+                    
+                    <div class="form__mainitems">
+                        <div>
+                            <label for="startDate">Start date: </label>
+                            <input type="date" id="startDate" name="startDate">
+                        </div>
+                        <div>               
+                            <label for="endtDate">End date: </label>
+                            <input type="date" id="endtDate" name="endtDate">
+                        </div>
+                    </div>
 
-                    <label for="qualificationName">Qualification name: </label>
-                    <input type="text" id="qualificationName" name="qualificationName">
-            
-                    <label for="startDate">Start date: </label>
-                    <input type="date" id="startDate" name="startDate">
-            
-                    <label for="endtDate">End date: </label>
-                    <input type="date" id="endtDate" name="endtDate">
-            
-                    <label for="subjects">Subjects: </label>
-                    <input type="text" id="subjects" name="subjects">
-            
-                    <label for="majors">Majors: </label>
-                    <input type="text" id="majors" name="majors">
-            
-                    <label for="subMajors">Sub majors: </label>
-                    <input type="text" id="subMajors" name="subMajors">
-            
-                    <label for="research">Research: </label>
-                    <input type="text" id="research" name="research">
-            
-                    <button type="submit">Save changes</button>
-                    <button type="submit">Edit</button>
-                    <button type="submit">Delete</button>
+                    <div class="form__mainitems">
+                        <div>
+                            <label for="subjects">Subjects: </label>
+                            <input type="text" id="subjects" name="subjects">
+                        </div>
+                        <div>  
+                            <label for="majors">Majors: </label>
+                            <input type="text" id="majors" name="majors">
+                        </div>
+                    </div>
+                    <div class="form__mainitems">
+                        <div>
+                            <label for="subMajors">Sub majors: </label>
+                            <input type="text" id="subMajors" name="subMajors">
+                        </div>
+                        <div>  
+                            <label for="research">Research: </label>
+                            <input type="text" id="research" name="research">
+                        </div>
+                    </div>
+                    <div class="formClass__buttons">
+                        <button type="submit" id="deleteButton"> Delete </button>
+                        <button type="submit"> Save </button>
+                    </div>
+
                 </form>
-
-                <button id="closeformbbbtn">Close Form</button>
-                <script src="/frontend/static/js/validations/validatePersonalDetails.js"></script>
+                
             </section>
-
+            
             
         `;
   }
 }
+// <tr>
+//     <td>University of witwatersrand</td>
+//     <td>20/12/2019</td>
+//     <td>20/12/2022</td>
+//     <td>BSc - Computer Science</td>
+//     <td><a id="1" href="#" open-edu>View details</a></td>
+// </tr>
+
+// <tr>
+//     <td>University of johannesburg</td>
+//     <td>20/12/2019</td>
+//     <td>20/12/2022</td>
+//     <td>Eng - Electrical eng</td>
+//     <td><a id="2" href="#" open-edu>View details</a></td>
+// </tr>
+//<p id="add__sign"> + </p> <p id="add__word"> </p>
