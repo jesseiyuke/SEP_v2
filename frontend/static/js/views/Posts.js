@@ -2,9 +2,9 @@ import AbstractView from "./AbstractView.js";
 
 async function getJobPostsFromAPI() {
   try {
-    const response = await fetch("https://localhost:7013/api/JobPosts", {
+    const response = await fetch("https://localhost:44362/api/JobPosts", {
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImJiYjBiMGZkLTk4ZDAtNDFkNy1hZmIyLTdjYWFmZTFkMzVlYiIsImp0aSI6ImYyYmQyZmRiLWNmZWUtNDY5MS05NzRjLTEyNzk2ZWRjYmQ5NiIsImV4cCI6MTY5MTQxNzA2NCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAxMyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMTMifQ.oScblb46P77txDtcB21ph98ITBwRaFISikC4VBeZoKA'
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjU4MzEwNzI0LTBmYzYtNGUzMC05YjZiLTc3NzFiOGIyZTE0YyIsImp0aSI6IjljODkyNmY4LWYzOTItNDI2OS04YTU4LWRhMGQwMmQ1MDYzOSIsImV4cCI6MTY5MjYxNDE5NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAxMyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMTMifQ.BrIr8niWiuLAxLr0UgB2ICzaXW6favyxLqcGgNN_Sk4'
       }
     });
 
