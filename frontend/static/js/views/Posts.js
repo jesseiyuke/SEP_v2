@@ -4,7 +4,7 @@ async function getJobPostsFromAPI() {
   try {
     const response = await fetch("https://localhost:44362/api/JobPosts", {
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjU4MzEwNzI0LTBmYzYtNGUzMC05YjZiLTc3NzFiOGIyZTE0YyIsImp0aSI6IjljODkyNmY4LWYzOTItNDI2OS04YTU4LWRhMGQwMmQ1MDYzOSIsImV4cCI6MTY5MjYxNDE5NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAxMyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMTMifQ.BrIr8niWiuLAxLr0UgB2ICzaXW6favyxLqcGgNN_Sk4'
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjU4MzEwNzI0LTBmYzYtNGUzMC05YjZiLTc3NzFiOGIyZTE0YyIsImp0aSI6IjBmYjEzNDg4LWVjYjAtNGIxZC1hMjhhLTAxNjQ0Y2E2MGI3ZSIsImV4cCI6MTY5MjYxODYwOSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzAxMyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwMTMifQ.MfdeB5sjbmBsbxJoiZszQHBA4_NZ0MLpv1gWXSOi10U'
       }
     });
 
@@ -29,6 +29,7 @@ export default class extends AbstractView {
   }
 
   async getHtml() {
+    const jobPosts = await getJobPostsFromAPI();
     const jobPostsHTML = jobPosts.map((post, index) => this.getJobCardHtml(post, index)).join("");
 
     // Wrap job cards inside a scrollable container
@@ -94,53 +95,55 @@ export default class extends AbstractView {
 
   // Update event listener to toggle job details visibility
   async addEventListener() {
+    const jobPosts = await getJobPostsFromAPI(); // Fetch job posts again here, if needed
     const jobCards = document.querySelectorAll(".job-card");
     const jobDetailsSection = document.querySelector(".job-details");
 
-      jobCards.forEach((card, index) => {
-        card.addEventListener("click", () => {
-          const selectedJob = jobPosts[index];
-          documents=[];
-          const jobDetailsHTML = `
-            <h2>${selectedJob.jobTitle}</h2>
-            <p>Department: ${selectedJob.department}</p>
-            <p>Location: ${selectedJob.location}</p>
-            <p>FT/PT: ${selectedJob.jobType}</p>
-            <p>Start Date: ${selectedJob.startDate}</p>
-            <p>End Date: ${selectedJob.endDate}</p>
-            <p>Week Hour: ${selectedJob.weekHour}</p>
-            <p>Hourly Rate: ${selectedJob.hourlyRate}</p>
-            <p>Job Description: ${selectedJob.jobDescription}</p>
-            <p>Minimum Requirements: ${selectedJob.minimumRequirements}</p>
-            <p>Key Responsibilities: ${selectedJob.keyResponsibilities}</p>
-            <p>Closing Date: ${selectedJob.closingDate}</p>
-            <p>Contact Person: ${selectedJob.contactPerson}</p>
-            <p>Email: ${selectedJob.email}</p>
-            <h2>Document Upload</h2>
+    jobCards.forEach((card, index) => {
+      card.addEventListener("click", () => {
+        const selectedJob = jobPosts[index];
+        const jobDetailsHTML = `
+          <h2>${selectedJob.jobTitle}</h2>
+          <p>Department: ${selectedJob.department}</p>
+          <p>Location: ${selectedJob.location}</p>
+          <p>FT/PT: ${selectedJob.jobType}</p>
+          <p>Start Date: ${selectedJob.startDate}</p>
+          <p>End Date: ${selectedJob.endDate}</p>
+          <p>Week Hour: ${selectedJob.weekHour}</p>
+          <p>Hourly Rate: ${selectedJob.hourlyRate}</p>
+          <p>Job Description: ${selectedJob.jobDescription}</p>
+          <p>Minimum Requirements: ${selectedJob.minimumRequirements}</p>
+          <p>Key Responsibilities: ${selectedJob.keyResponsibilities}</p>
+          <p>Closing Date: ${selectedJob.closingDate}</p>
+          <h2>Document Upload</h2>
             <div id="uploaded_files"></div>
             <input type="file" id="fileInput">
             <br>
             <button class="apply-btn" id="saveButton">Save</button>
             <button class="apply-btn" id="applyButton">Apply</button>
-          
-          `;
-  
-          // Check if the card is already compressed
-          if (card.classList.contains("compressed")) {
-            jobDetailsSection.innerHTML = "";
-            jobDetailsSection.classList.add("hidden");
-            card.classList.remove("compressed");
-          } else {
-            const allJobCards = document.querySelectorAll(".job-card");
-            allJobCards.forEach((c) => c.classList.remove("compressed"));
-            jobDetailsSection.innerHTML = "";
-            jobDetailsSection.classList.add("hidden");
-  
-            jobDetailsSection.innerHTML = jobDetailsHTML;
-            jobDetailsSection.classList.remove("hidden");
-            card.classList.add("compressed");
-          }
-          const uploadButton = document.querySelector("#fileInput");
+        `;
+
+        // Check if the card is already compressed
+        if (card.classList.contains("compressed")) {
+          // Hide job details section and remove compression from the card
+          jobDetailsSection.innerHTML = "";
+          jobDetailsSection.classList.add("hidden");
+          card.classList.remove("compressed");
+        } else {
+          // Clear job details section and remove compression from all cards
+          const allJobCards = document.querySelectorAll(".job-card");
+          allJobCards.forEach((c) => c.classList.remove("compressed"));
+          jobDetailsSection.innerHTML = "";
+          jobDetailsSection.classList.add("hidden");
+
+          // Show details of the clicked card and add compression to the card
+          jobDetailsSection.innerHTML = jobDetailsHTML;
+          jobDetailsSection.classList.remove("hidden");
+          card.classList.add("compressed");
+        }
+
+
+        const uploadButton = document.querySelector("#fileInput");
           const saveButton = document.querySelector("#saveButton");
           const applyButton =document.querySelector("#applyButton");
           const savePopup = document.getElementById('savePopup');
@@ -165,8 +168,10 @@ export default class extends AbstractView {
             this.Apply();
             applyPopup.style.display = 'block';
           });
-        });
+
+
       });
-    }
-  
+    });
   }
+
+}

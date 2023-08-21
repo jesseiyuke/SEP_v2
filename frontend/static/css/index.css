@@ -553,7 +553,7 @@ hr {
 /* Style the job posts container */
 .job-posts-container {
   flex: 1; /* Set a fixed width for job posts container */
-  max-height: calc(100vh - 100px); /* Account for header and footer heights */
+  max-height: calc(120vh - 100px); /* Account for header and footer heights */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 1rem;
@@ -628,6 +628,7 @@ hr {
 /* Apply button styles */
 .apply-btn {
   margin-top: 1rem;
+  width: fit-content;
   background-color: #007bff;
   color: #fff;
   padding: 0.5rem 1rem;
