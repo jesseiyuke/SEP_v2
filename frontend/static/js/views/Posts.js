@@ -29,7 +29,6 @@ export default class extends AbstractView {
   }
 
   async getHtml() {
-    const jobPosts = await getJobPostsFromAPI();
     const jobPostsHTML = jobPosts.map((post, index) => this.getJobCardHtml(post, index)).join("");
 
     // Wrap job cards inside a scrollable container
@@ -95,51 +94,79 @@ export default class extends AbstractView {
 
   // Update event listener to toggle job details visibility
   async addEventListener() {
-    const jobPosts = await getJobPostsFromAPI(); // Fetch job posts again here, if needed
     const jobCards = document.querySelectorAll(".job-card");
     const jobDetailsSection = document.querySelector(".job-details");
 
-    jobCards.forEach((card, index) => {
-      card.addEventListener("click", () => {
-        const selectedJob = jobPosts[index];
-        const jobDetailsHTML = `
-          <h2>${selectedJob.jobTitle}</h2>
-          <p>Department: ${selectedJob.department}</p>
-          <p>Location: ${selectedJob.location}</p>
-          <p>FT/PT: ${selectedJob.jobType}</p>
-          <p>Start Date: ${selectedJob.startDate}</p>
-          <p>End Date: ${selectedJob.endDate}</p>
-          <p>Week Hour: ${selectedJob.weekHour}</p>
-          <p>Hourly Rate: ${selectedJob.hourlyRate}</p>
-          <p>Job Description: ${selectedJob.jobDescription}</p>
-          <p>Minimum Requirements: ${selectedJob.minimumRequirements}</p>
-          <p>Key Responsibilities: ${selectedJob.keyResponsibilities}</p>
-          <p>Closing Date: ${selectedJob.closingDate}</p>
-          <p>Contact Person: ${selectedJob.contactPerson}</p>
-          <p>Email: ${selectedJob.email}</p>
-          <button class="apply-btn">Apply</button>
-        `;
+      jobCards.forEach((card, index) => {
+        card.addEventListener("click", () => {
+          const selectedJob = jobPosts[index];
+          documents=[];
+          const jobDetailsHTML = `
+            <h2>${selectedJob.jobTitle}</h2>
+            <p>Department: ${selectedJob.department}</p>
+            <p>Location: ${selectedJob.location}</p>
+            <p>FT/PT: ${selectedJob.jobType}</p>
+            <p>Start Date: ${selectedJob.startDate}</p>
+            <p>End Date: ${selectedJob.endDate}</p>
+            <p>Week Hour: ${selectedJob.weekHour}</p>
+            <p>Hourly Rate: ${selectedJob.hourlyRate}</p>
+            <p>Job Description: ${selectedJob.jobDescription}</p>
+            <p>Minimum Requirements: ${selectedJob.minimumRequirements}</p>
+            <p>Key Responsibilities: ${selectedJob.keyResponsibilities}</p>
+            <p>Closing Date: ${selectedJob.closingDate}</p>
+            <p>Contact Person: ${selectedJob.contactPerson}</p>
+            <p>Email: ${selectedJob.email}</p>
+            <h2>Document Upload</h2>
+            <div id="uploaded_files"></div>
+            <input type="file" id="fileInput">
+            <br>
+            <button class="apply-btn" id="saveButton">Save</button>
+            <button class="apply-btn" id="applyButton">Apply</button>
+          
+          `;
+  
+          // Check if the card is already compressed
+          if (card.classList.contains("compressed")) {
+            jobDetailsSection.innerHTML = "";
+            jobDetailsSection.classList.add("hidden");
+            card.classList.remove("compressed");
+          } else {
+            const allJobCards = document.querySelectorAll(".job-card");
+            allJobCards.forEach((c) => c.classList.remove("compressed"));
+            jobDetailsSection.innerHTML = "";
+            jobDetailsSection.classList.add("hidden");
+  
+            jobDetailsSection.innerHTML = jobDetailsHTML;
+            jobDetailsSection.classList.remove("hidden");
+            card.classList.add("compressed");
+          }
+          const uploadButton = document.querySelector("#fileInput");
+          const saveButton = document.querySelector("#saveButton");
+          const applyButton =document.querySelector("#applyButton");
+          const savePopup = document.getElementById('savePopup');
+          const saveCloseButton = document.getElementById('saveCloseButton');
+          const applyCloseButton = document.getElementById('applyCloseButton');
+          const applyPopup = document.getElementById('applyPopup');
 
-        // Check if the card is already compressed
-        if (card.classList.contains("compressed")) {
-          // Hide job details section and remove compression from the card
-          jobDetailsSection.innerHTML = "";
-          jobDetailsSection.classList.add("hidden");
-          card.classList.remove("compressed");
-        } else {
-          // Clear job details section and remove compression from all cards
-          const allJobCards = document.querySelectorAll(".job-card");
-          allJobCards.forEach((c) => c.classList.remove("compressed"));
-          jobDetailsSection.innerHTML = "";
-          jobDetailsSection.classList.add("hidden");
-
-          // Show details of the clicked card and add compression to the card
-          jobDetailsSection.innerHTML = jobDetailsHTML;
-          jobDetailsSection.classList.remove("hidden");
-          card.classList.add("compressed");
-        }
+          saveCloseButton.addEventListener('click', () => {
+            savePopup.style.display = 'none';
+          });
+          applyCloseButton.addEventListener('click', () => {
+            applyPopup.style.display = 'none';
+          });
+          uploadButton.addEventListener("change", () => {
+            this.uploadFile();
+          });
+          saveButton.addEventListener("click", () => {
+            this.saveFile();
+            savePopup.style.display = 'block';
+          });
+          applyButton.addEventListener("click", ()=>{
+            this.Apply();
+            applyPopup.style.display = 'block';
+          });
+        });
       });
-    });
+    }
+  
   }
-
-}

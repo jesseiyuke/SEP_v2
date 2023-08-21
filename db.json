@@ -1,0 +1,174 @@
+{
+  "posts": [
+    {
+      "jobTitle": "Software Developer Intern 1",
+      "department": "Wits Innovation Centre",
+      "location": "Wits Plus Building, Third Floor",
+      "jobType": "Full-time",
+      "startDate": "19/07/23",
+      "endDate": "22/02/24",
+      "weekHour": "6-8 Hours",
+      "hourlyRate": 180.27,
+      "jobDescription": "Develop high-quality software",
+      "minimumRequirements": "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
+      "keyResponsibilities": "Write code|Give presentations|Join meetings",
+      "closingDate": "26/09/23",
+      "contactPerson": "John Doe",
+      "email": "JohnDoe@wits.ac.za"
+    },
+    {
+      "jobTitle": "Software Developer Intern 2",
+      "location": "Wits Plus Building, Third Floor",
+      "department": "Wits Innovation Centre",
+      "jobType": "Part-time",
+      "startDate": "19/07/23",
+      "endDate": "22/02/24",
+      "weekHour": "10-12 Hours",
+      "hourlyRate": 150.5,
+      "jobDescription": "Develop cutting-edge software solutions.",
+      "minimumRequirements": "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
+      "keyResponsibilities": "Design software architecture|Collaborate with teams|Debug and test code",
+      "closingDate": "30/09/23",
+      "contactPerson": "Jane Smith",
+      "email": "JaneSmith@wits.ac.za"
+    },
+    {
+      "jobTitle": "Software Developer Intern 3",
+      "location": "Wits Plus Building, Third Floor",
+      "department": "Wits Innovation Centre",
+      "jobType": "Full-time",
+      "startDate": "19/07/23",
+      "endDate": "22/02/24",
+      "weekHour": "6-8 Hours",
+      "hourlyRate": 180.27,
+      "jobDescription": "Create innovative software applications.",
+      "minimumRequirements": "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
+      "keyResponsibilities": "Implement new features|Conduct code reviews|Assist in testing",
+      "closingDate": "28/09/23",
+      "contactPerson": "Michael Johnson",
+      "email": "MichaelJohnson@wits.ac.za"
+    },
+    {
+      "jobTitle": "Software Developer Intern 4",
+      "location": "Wits Plus Building, Third Floor",
+      "department": "Wits Innovation Centre",
+      "jobType": "Full-time",
+      "startDate": "19/07/23",
+      "endDate": "22/02/24",
+      "weekHour": "6-8 Hours",
+      "hourlyRate": 180.27,
+      "jobDescription": "Create innovative software applications.",
+      "minimumRequirements": "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
+      "keyResponsibilities": "Implement new features|Conduct code reviews|Assist in testing",
+      "closingDate": "28/09/23",
+      "contactPerson": "Michael Johnson",
+      "email": "MichaelJohnson@wits.ac.za"
+    },
+    {
+      "jobTitle": "Software Developer Intern 5",
+      "location": "Wits Plus Building, Third Floor",
+      "department": "Wits Innovation Centre",
+      "jobType": "Full-time",
+      "startDate": "19/07/23",
+      "endDate": "22/02/24",
+      "weekHour": "6-8 Hours",
+      "hourlyRate": 180.27,
+      "jobDescription": "Create innovative software applications.",
+      "minimumRequirements": "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
+      "keyResponsibilities": "Implement new features|Conduct code reviews|Assist in testing",
+      "closingDate": "28/09/23",
+      "contactPerson": "Michael Johnson",
+      "email": "MichaelJohnson@wits.ac.za"
+    },
+    {
+      "jobTitle": "Software Developer Intern 6",
+      "location": "Wits Plus Building, Third Floor",
+      "department": "Wits Innovation Centre",
+      "jobType": "Full-time",
+      "startDate": "19/07/23",
+      "endDate": "22/02/24",
+      "weekHour": "6-8 Hours",
+      "hourlyRate": 180.27,
+      "jobDescription": "Create innovative software applications.",
+      "minimumRequirements": "Must have experience with MS Word|Must know the difference between left mouse click and right|Be able to hold pen",
+      "keyResponsibilities": "Implement new features|Conduct code reviews|Assist in testing",
+      "closingDate": "28/09/23",
+      "contactPerson": "Michael Johnson",
+      "email": "MichaelJohnson@wits.ac.za"
+    }
+  ],
+  "post": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "id": 10
+    },
+    {
+      "id": 11
+    },
+    {
+      "id": 12
+    },
+    {
+      "id": 13
+    },
+    {
+      "id": 14
+    },
+    {
+      "id": 15
+    },
+    {
+      "id": 16
+    },
+    {
+      "id": 17
+    },
+    {
+      "id": 18
+    },
+    {
+      "id": 19
+    },
+    {
+      "id": 20
+    },
+    {
+      "id": 21
+    },
+    {
+      "id": 22
+    },
+    {
+      "id": 23
+    },
+    {
+      "id": 24
+    }
+  ]
+}
