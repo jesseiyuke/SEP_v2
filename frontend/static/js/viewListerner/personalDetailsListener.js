@@ -1,3 +1,5 @@
+const userId = "b9fa4d80-ebba-42d5-9fb5-b8eaa4f34ef2";
+
 // Start of cutsom client-side validations
 function isValidEmail(email) {
     // Basic email format validation using regular expression
@@ -343,7 +345,7 @@ export async function fetchStudentProfile()
 {
     // // disclaimer: will have to use id of current logged in user
     // // for now, using the seeded data for testing purposes
-    const studentRes = await fetch("https://localhost:7013/api/Student/Get Student profile?StudentId=b9e65457-679e-4d90-b1cd-c4cdad9c66c8");
+    const studentRes = await fetch("https://localhost:7013/api/Student/Get Student profile?StudentId=" + userId);
     const student = await studentRes.json();
     
     // Populate the dropdowns and map the data values to the form fields
@@ -447,7 +449,7 @@ async function submitForm() {
     
     // Collect updated data from form fields
     const updatedData = {
-        userId: "b9e65457-679e-4d90-b1cd-c4cdad9c66c8",
+        userId: userId,
         address: document.querySelector("#address").value, 
         idNumber: document.querySelector("#idNumber").value,
         driversLicenseId: document.querySelector("#license").value,

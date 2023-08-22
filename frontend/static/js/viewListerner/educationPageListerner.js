@@ -1,3 +1,5 @@
+const userId = "b9fa4d80-ebba-42d5-9fb5-b8eaa4f34ef2";
+
 // listening for the education page to load
 
 console.log("education Loading page is working");
@@ -80,7 +82,7 @@ export function educationListener() {
   // fetching json from local server
   async function getStudent(myCallback) {
     const response = await fetch(
-      "https://localhost:7013/api/Student/Get Qualifications?StudentId=b9e65457-679e-4d90-b1cd-c4cdad9c66c8"
+      "https://localhost:7013/api/Student/Get Qualifications?StudentId=" + userId
     ).then((res) => res.json());
 
     myCallback(response);
@@ -168,7 +170,7 @@ export function educationListener() {
   async function addEducation() {
     // Collect updated data from form fields
     const updatedData = {
-      studentId: "b9e65457-679e-4d90-b1cd-c4cdad9c66c8",
+      studentId: userId,
       institution: document.getElementById("institutionName").value,
       qualificationTitle: document.getElementById("qualificationName").value,
       startDate: document.getElementById("startDate").value,

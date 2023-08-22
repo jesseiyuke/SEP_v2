@@ -18,6 +18,23 @@ import { educationListener } from "./viewListerner/educationPageListerner.js";
 import { experienceListener } from "./viewListerner/expriencePageListerner.js";
 import { refereeListener } from "./viewListerner/refereePageListerner.js";
 
+const routes = [
+  { path: "/", view: Home },
+  // { path: "/Profile", view: Profile},
+  { path: "/PersonalDetails", view: PersonalDetails },
+  { path: "/Education", view: Education },
+  { path: "/WorkExperience", view: WorkExperience },
+  { path: "/Referees", view: Referees },
+  { path: "/posts", view: Posts },
+  { path: "/posts/:id", view: PostView },
+  { path: "/interview_skills", view: InterviewSkills },
+  { path: "/JobSearchProcess", view: JobSearchProcess },
+  { path: "/BeforeInterview", view: BeforeInterview },
+  { path: "/DuringInterview", view: DuringInterview },
+  { path: "/TellYourself", view: TellYourself },
+  { path: "/SelfDescribeWords", view: SelfDescribeWords },
+];
+
 const pathToRegex = (path) =>
   new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 
@@ -40,23 +57,6 @@ const navigateTo = (url) => {
 };
 
 const router = async () => {
-  const routes = [
-    { path: "/", view: Home },
-    // { path: "/Profile", view: Profile},
-    { path: "/PersonalDetails", view: PersonalDetails },
-    { path: "/Education", view: Education },
-    { path: "/WorkExperience", view: WorkExperience },
-    { path: "/Referees", view: Referees },
-    { path: "/posts", view: Posts },
-    { path: "/posts/:id", view: PostView },
-    { path: "/interview_skills", view: InterviewSkills },
-    { path: "/JobSearchProcess", view: JobSearchProcess },
-    { path: "/BeforeInterview", view: BeforeInterview },
-    { path: "/DuringInterview", view: DuringInterview },
-    { path: "/TellYourself", view: TellYourself },
-    { path: "/SelfDescribeWords", view: SelfDescribeWords },
-  ];
-
   // Test each route for potential match
   const potentialMatches = routes.map((route) => {
     return {
@@ -78,62 +78,32 @@ const router = async () => {
 
   const view = new match.route.view(getParams(match));
 
-    document.querySelector('#app').innerHTML = await view.getHtml();
+    const html = await view.getHtml();
+    document.querySelector("#app").appendChild(html);
 
-    if (match.route.path === "/PersonalDetails") {
-        await fetchStudentProfile();
-        await validateForms();
-    }
-    else if (match.route.path === "/Education") {
-      educationListener();
-    }
-    else if (match.route.path === "/WorkExperience") {
-      experienceListener();
-    }
-    else if (match.route === "/Referees") {
-      refereeListener();
-    }
+    // document.querySelector('#app').innerHTML = await view.getHtml();
+
+    // if (match.route.path === "/PersonalDetails") {
+    //     await fetchStudentProfile();
+    //     await validateForms();
+    // }
+    // else if (match.route.path === "/Education") {
+    //   educationListener();
+    // }
+    // else if (match.route.path === "/WorkExperience") {
+    //   experienceListener();
+    // }
+    // else if (match.route === "/Referees") {
+    //   refereeListener();
+    // }
     
 };
 
 window.addEventListener("popstate", router);
 
-// Get the anchor element
-/* const anchorElement = document.querySelector('a.nav__link');
-
-// Add a click event listener to the anchor element
-anchorElement.addEventListener('click', function(event) {
-	// Prevent the default behavior of the anchor (e.g., navigating to the href URL)
-	event.preventDefault();
-
- 
-
-	// Check if the actual target of the click event is the anchor itself
-	if (event.target === anchorElement) {
-		// The click was on the anchor element, and you can handle the click action here
-		// For example, you can redirect to the link's URL manually:
-		window.location.href = anchorElement.getAttribute('href');
-		navigateTo(window.location.href);
-	}
-}); */
-
-// document.addEventListener("DOMContentLoaded", () => {
-//     document.body.addEventListener("click", e => {
-//         if ( e.target === anchorElement) {
-//             console.log("Clicked element is <i> tag");
-//             e.preventDefault();
-//             navigateTo(e.target.href);
-//         }
-//     });
-
-//     router();
-// });
-
 document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener("click", (e) => {
     if (e.target.matches("[data-link]")) {
-      // console.log(e.target);
-      // console.log("Clicked element is <i> tag");
       e.preventDefault();
       navigateTo(e.target.href);
     }
